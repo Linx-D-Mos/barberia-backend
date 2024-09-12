@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Log extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+
+    public $timestamps = false; // no necesitamos los campos created_at y updated_at
 
     /**
      * The attributes that are mass assignable.
@@ -17,10 +17,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'password',
+        'table_name',
+        'operation',
+        'function',
+        'row_id',
+        'old_values',
+        'new_values',
+        'ip_address',
+        'user_agent',
+        'browser',
+        'platform',
+        'created_at',
     ];
 
     /**
@@ -28,10 +35,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = [];
 
     /**
      * Get the attributes that should be cast.
@@ -41,8 +45,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'created_at' => 'datetime', // 'datetime:Y-m-d H:i:s'
         ];
     }
 }
