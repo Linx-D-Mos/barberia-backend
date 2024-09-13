@@ -5,6 +5,6 @@ Este proyecto está hecho con las siguientes tecnologías:
    - Laravel 11.2.0
 2. Frontend
    - Angular 17
-   - ionic 7.2.0 (typeScri)
+   - ionic 7.2.0 (typeScript)
    - scss
    - html 5
