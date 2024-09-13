@@ -17,7 +17,11 @@ class BarbershopFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->streetName(),
+            'address' => fake()->unique()->address(),
+            'phone' => fake()->unique()->phoneNumber(),
+            'number' => fake()->unique()->buildingNumber(),
+            'tokenwaapi' => fake()->unique()->sha256(),
         ];
     }
 }

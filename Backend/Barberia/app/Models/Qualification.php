@@ -20,4 +20,20 @@ class Qualification extends Model
         'score',
         'comment',
     ];
+
+    /**
+     * Obtener el cliente de la calificación
+     */
+    public function client()
+    {
+        return $this->belongsTo(Profile::class, 'client_id');
+    }
+
+    /**
+     * Obtener el barbero de la calificación
+     */
+    public function barber()
+    {
+        return $this->belongsTo(Profile::class, 'barber_id');
+    }
 }

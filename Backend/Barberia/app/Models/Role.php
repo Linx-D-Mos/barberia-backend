@@ -17,4 +17,12 @@ class Role extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * Obtener los perfiles con este rol
+     */
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
 }

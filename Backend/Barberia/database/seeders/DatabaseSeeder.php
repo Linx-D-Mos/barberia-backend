@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Barbershop;
+use App\Models\Profile;
+use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +16,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(10)->create();
 
-        User::factory()->create([
+        /* User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]); */
+
+        Role::factory()->createMany([
+            ['name' => 'admin',],
+            ['name' => 'secretary',],
+            ['name' => 'barber',],
+            ['name' => 'client',],
         ]);
+
+        Barbershop::factory(10)->create();
+
+        Profile::factory(10)->create();
     }
 }

@@ -20,4 +20,12 @@ class Invoice extends Model
         'payment_method',
         'status',
     ];
+
+    /**
+     * Obtener los detalles de la factura
+     */
+    public function invoiceDetails()
+    {
+        return $this->hasMany(InvoiceDetail::class);
+    }
 }

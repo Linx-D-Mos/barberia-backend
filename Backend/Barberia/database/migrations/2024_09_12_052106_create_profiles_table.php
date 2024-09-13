@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id', false, true);
+            $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('role_id', false, true);
+            $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->bigInteger('barbershop_id', false, true);
+            $table->unsignedBigInteger('barbershop_id');;
             $table->foreign('barbershop_id')->references('id')->on('barbershops');
             $table->enum('status', ['ACTIVO', 'INACTIVO'])->default('ACTIVO');
             $table->timestamps();

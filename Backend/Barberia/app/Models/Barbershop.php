@@ -30,4 +30,20 @@ class Barbershop extends Model
     protected $hidden = [
         'tokenwaapi',
     ];
+
+    /**
+     * Obtener los perfiles de la barbería
+     */
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
+    /**
+     * Obtener los servicios de la barbería
+     */
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
 }

@@ -21,4 +21,20 @@ class InvoiceDetail extends Model
         'descount',
         'descount_value',
     ];
+
+    /**
+     * Obtener la factura a la que pertenece el detalle
+     */
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
+    }
+
+    /**
+     * Obtener la atención de la factura
+     */
+    public function attentionService()
+    {
+        return $this->belongsTo(AttentionService::class);
+    }
 }

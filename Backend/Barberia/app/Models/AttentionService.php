@@ -18,4 +18,28 @@ class AttentionService extends Model
         'attention_id',
         'service_id',
     ];
+
+    /**
+     * Obtener la atención a la que pertenece el servicio
+     */
+    public function attention()
+    {
+        return $this->belongsTo(Attention::class);
+    }
+
+    /**
+     * Obtener el servicio de la atención
+     */
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
+    /**
+     * Obtener los detalles de la factura de la atención
+     */
+    public function invoiceDetails()
+    {
+        return $this->hasMany(InvoiceDetail::class);
+    }
 }

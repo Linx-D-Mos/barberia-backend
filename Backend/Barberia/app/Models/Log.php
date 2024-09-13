@@ -48,4 +48,12 @@ class Log extends Model
             'created_at' => 'datetime', // 'datetime:Y-m-d H:i:s'
         ];
     }
+
+    /**
+     * Obtener el perfil que realizó la acción
+     */
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
 }

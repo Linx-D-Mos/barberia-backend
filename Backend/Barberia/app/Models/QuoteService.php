@@ -18,4 +18,20 @@ class QuoteService extends Model
         'quote_id',
         'service_id',
     ];
+
+    /**
+     * Obtener la cita a la que pertenece el servicio
+     */
+    public function quote()
+    {
+        return $this->belongsTo(Quote::class);
+    }
+
+    /**
+     * Obtener el servicio de la cita
+     */
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

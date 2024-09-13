@@ -19,4 +19,12 @@ class Note extends Model
         'date',
         'content',
     ];
+
+    /**
+     * Obtener el cliente de la nota
+     */
+    public function client()
+    {
+        return $this->belongsTo(Profile::class, 'client_id');
+    }
 }

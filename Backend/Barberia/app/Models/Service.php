@@ -20,4 +20,28 @@ class Service extends Model
         'price',
         'barbershop_id',
     ];
+
+    /**
+     * Obtener la barbería a la que pertenece el servicio
+     */
+    public function barbershop()
+    {
+        return $this->belongsTo(Barbershop::class);
+    }
+
+    /**
+     * Obtener las citas de los servicios
+     */
+    public function quotes()
+    {
+        return $this->hasMany(QuoteService::class);
+    }
+
+    /**
+     * Obtener las atenciones de los servicios
+     */
+    public function attentions()
+    {
+        return $this->hasMany(AttentionService::class);
+    }
 }
