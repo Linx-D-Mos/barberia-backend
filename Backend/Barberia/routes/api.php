@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\BarberoController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\DuenoController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +17,5 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('barberos', BarberoController::class);
 Route::apiResource('clientes', ClienteController::class);
 Route::apiResource('duenos', DuenoController::class);
+Route::apiResource('users', UserController::class);
+
