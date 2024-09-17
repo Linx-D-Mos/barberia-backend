@@ -17,5 +17,9 @@ export const routes: Routes = [
   {
     path: 'recuperar',
     loadComponent: () => import('./recuperar/recuperar.page').then( m => m.RecuperarPage)
+  },  {
+    path: 'cargando',
+    loadComponent: () => import('./cargando/cargando.page').then( m => m.CargandoPage)
   },
+
 ];
