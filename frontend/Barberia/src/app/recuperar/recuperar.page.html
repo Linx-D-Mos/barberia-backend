@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">recuperar</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-icon (click)="goBack()" class="back" size="large" name="arrow-back-outline"></ion-icon>
+
+
+  <ion-img class="logo" src="assets/logo.jpeg"></ion-img>
+
+ <div class="correo">
+  <ion-input  label-placement="floating" fill="outline" label="Ingresa tu correo">
+  </ion-input>
+ </div>
+
+ <ion-button class="recuperar"  >
+    Recuperar
+ </ion-button>
+
+ <div  class="reenviar">
+  <ion-label>
+    ¿No recibiste el correo?
+   </ion-label>
+ </div>
+
+ <ion-button class="btnReenviar">
+  Reenviar correo
+ </ion-button>
+ 
+
+</ion-content>

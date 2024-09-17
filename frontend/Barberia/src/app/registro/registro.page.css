@@ -1,0 +1,39 @@
+.logo{
+    margin-top: 8%;
+    width: 300px;
+    height: 300px;
+    margin-left: 14%;
+  }
+  .usuario{
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+.email{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 8%;
+}
+
+.numero{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 8%;
+}
+.password{
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 8%;
+}
+.button{
+  margin-left: 20%;
+  width: 260px;
+  padding-top: 8%;
+  font-size: 20px;
+  --background: gray; 
+}
+
+.back{
+  padding-top: 6%;
+  margin-left: 5%;
+}
