@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router'; // Importar Router desde @angular/router
 
 @Component({
   selector: 'app-cargando',
   templateUrl: './cargando.page.html',
-  styleUrls: ['./cargando.page.css'],
+  styleUrls: ['./cargando.page.css'], // Cambia a .scss si estás usando SCSS
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, IonicModule]
 })
 export class CargandoPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { } // Asegúrate de usar 'router' en minúscula
 
   ngOnInit() {
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 3000);
   }
 
 }
