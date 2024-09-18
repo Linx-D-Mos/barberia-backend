@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Dueno;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DuenoController extends Controller
+class DuenoController
 {
     /**
      * Display a listing of the resource.

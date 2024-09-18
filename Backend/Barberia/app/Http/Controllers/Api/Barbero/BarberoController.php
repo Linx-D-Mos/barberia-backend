@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Barbero;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BarberoController extends Controller
+class BarberoController
 {
     /**
      * Display a listing of the resource.
