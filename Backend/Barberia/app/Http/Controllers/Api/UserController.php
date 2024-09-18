@@ -92,21 +92,21 @@ class UserController
      /**
      * perfil del usuario
      */
-    /** public function profile(string $id)
-    *{
-     *   // obtener el perfil del usuario
-      *  $user = User::with('profile')->find($id);
-       * if ($user) {
-        *    return response()->json([
-         *       'success' => true,
-          *      'message' => 'Perfil del usuario',
-          *      'datum' => $user->profile
-          *  ]);
-        *}else{
-         *   return response()->json([
-          *      'success' => false,
-           *     'message' => 'Usuario no encontrado',
-            *]);
-       * }
-    *} */
+     public function profile(string $id)
+    {
+       // obtener el perfil del usuario
+        $user = User::with('profile')->find($id);
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Perfil del usuario',
+                'datum' => $user->profile
+           ]);
+        }else{
+            return response()->json([
+              'success' => false,
+                'message' => 'Usuario no encontrado',
+            ]);
+        }
+    }
 }
