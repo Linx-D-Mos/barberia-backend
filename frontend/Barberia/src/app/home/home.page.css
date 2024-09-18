@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo {
+  margin-top: 15%;
+  width: 300px;
+  height: 300px;
+  margin-left: 14%;
+  margin-right: 14px;
+}
+
+.email {
+  padding-top: 6%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.password {
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.iniciemos {
+  margin-left: 10%;
+  margin-top: 10%;
+  width: 328px;
+  height: 50px;
+  font-size: 20px;
+  --background: rgb(49, 22, 199);
+}
+
+.iniciemos:active{
+  --background: rgb(61, 31, 231);
+}
+
+.recuperar {
+  margin-top: 8%;
+  margin-left: 94px;
+}
+
+.recuperar ion-label:active {
+  color: rgb(61, 31, 231);
+  text-decoration: underline;
+}
+
+.unete {
+  margin-left: 10%;
+  margin-top: 10%;
+  width: 328px;
+  height: 50px;
+  font-size: 20px;
+  --background: rgb(177, 177, 177);
+}

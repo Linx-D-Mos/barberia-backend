@@ -1,18 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">inicio</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-
-  
+  <ion-img src="assets/logo.jpeg" alt="Logo" class="logo"></ion-img>
+  <div class="email">
+    <ion-input label="Correo" label-placement="floating" fill="outline"></ion-input>
+  </div>
+  <div class="password">
+    <ion-input label="Contraseña" label-placement="floating" fill="outline" type="password"></ion-input>
+  </div>
+  <ion-button class="iniciemos" routerLink="/citas">
+    iniciemos
+  </ion-button>
+  <div class="recuperar">
+    <ion-label routerLink="/recuperar">
+      ¿Has olvidado tu Contraseña?
+    </ion-label>
+  </div>
+  <ion-button routerLink="/registro" class="unete">
+    unete a nosotros
+  </ion-button>
 </ion-content>
