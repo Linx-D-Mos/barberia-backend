@@ -1,0 +1,33 @@
+.logo{
+    width: 100px;
+    height: 100px;
+    margin-left: 4%;
+}
+.account{
+    width: 80px;
+    height: 80px;
+    padding-top: 10px;
+}
+.name{
+    padding-top: 10%;
+    font-size: 18px;
+    margin-right: 9px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding-top: 8%;
+}
+.cartas{
+    border-radius: 15px;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 8%;
+}
+.aceptar{
+    --background:rgb(82, 77, 77);
+    margin-left: 65%;
+    margin-top: -15%;
+}
