@@ -1,9 +1,9 @@
 <?php
 
-// use App\Http\Controllers\Api\BarberoController;
-// use App\Http\Controllers\Api\ClienteController;
-// use App\Http\Controllers\Api\DuenoController;
-
+use App\Http\Controllers\Api\BarberoController;
+use App\Http\Controllers\Api\CitaController;
+use App\Http\Controllers\Api\ClienteController;
+use App\Http\Controllers\Api\DuenoController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\Login\LoginController;
 use App\Http\Controllers\Auth\Register\RegisterController;
@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 // Route::apiResource('clientes', ClienteController::class);
 // Route::apiResource('duenos', DuenoController::class);
 // Route::apiResource('users', UserController::class);
+Route::apiResource('citas', CitaController::class);
 
 
 Route::prefix('/auth')->group(function () {
