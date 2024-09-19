@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    loadComponent: () => import('./home/home.page').then(m => m.HomePage),
   },
   {
     path: '',
@@ -12,19 +12,18 @@ export const routes: Routes = [
   },
   {
     path: 'registro',
-    loadComponent: () => import('./registro/registro.page').then( m => m.RegistroPage)
+    loadComponent: () => import('./registro/registro.page').then(m => m.RegistroPage),
   },
   {
     path: 'recuperar',
-    loadComponent: () => import('./recuperar/recuperar.page').then( m => m.RecuperarPage)
+    loadComponent: () => import('./recuperar/recuperar.page').then(m => m.RecuperarPage),
   },
   {
     path: 'cargando',
-    loadComponent: () => import('./cargando/cargando.page').then( m => m.CargandoPage)
-  },  {
-    path: 'citas',
-    loadComponent: () => import('./citas/citas.page').then( m => m.CitasPage)
+    loadComponent: () => import('./cargando/cargando.page').then(m => m.CargandoPage),
   },
-
-
+  {
+    path: 'citas',
+    loadComponent: () => import('./citas/citas.page').then(m => m.CitasPage),
+  },
 ];

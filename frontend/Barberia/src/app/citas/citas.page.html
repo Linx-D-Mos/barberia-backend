@@ -1,46 +1,21 @@
-<ion-header [translucent]="true">
-
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">citas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div class="container">
-
-    <ion-img class="logo" src="assets/logo.jpeg" ></ion-img>
-
+    <ion-img routerLink="/home" class="logo" src="assets/logo.jpeg"></ion-img>
     <ion-label class="name">
-      Hola peluquero
+      Bienvenido {{users[1]?.name}}! : )
     </ion-label>
-
     <ion-icon class="account" name="person-circle-outline" size="large"></ion-icon>
-
- 
-
   </div>
-   
-
+  <!--lista de cards de citas pendientes-->
   <ion-card class="cartas" *ngFor="let user of users">
     <ion-card-header>
       <ion-card-title>{{user.name}}</ion-card-title>
-      <ion-card-subtitle>Fecha</ion-card-subtitle>
+      <ion-card-subtitle>Fecha: {{date}}</ion-card-subtitle>
     </ion-card-header>
-  
     <ion-card-content>
-      <ion-button class="aceptar">
-        Aceptar
-      </ion-button>
+      <ion-button  class="aceptar" (click)="presentActionSheet(user)">detalles</ion-button>
     </ion-card-content>
   </ion-card>
-
-
 </ion-content>
-
-
 <ion-footer>
- 
 </ion-footer>

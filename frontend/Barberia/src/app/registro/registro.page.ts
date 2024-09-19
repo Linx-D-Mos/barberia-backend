@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonImg, IonInput, IonItem, IonTabButton, IonButton, IonBackButton, IonIcon } from '@ionic/angular/standalone';
 import { addIcons, } from 'ionicons';
-import {arrowBackOutline} from 'ionicons/icons';
+import { arrowBackOutline } from 'ionicons/icons';
 import { NavController } from '@ionic/angular/standalone';
 @Component({
   selector: 'app-registro',
@@ -15,19 +15,13 @@ import { NavController } from '@ionic/angular/standalone';
 export class RegistroPage implements OnInit {
 
   constructor(private nav: NavController) {
-    addIcons({arrowBackOutline})
-
-
-   }
+    addIcons({ arrowBackOutline })
+  }
 
   ngOnInit() {
-
-    
   }
 
-  goBack(){
+  goBack() {
     this.nav.back();
-
   }
-
 }

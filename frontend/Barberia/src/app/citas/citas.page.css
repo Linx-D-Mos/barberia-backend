@@ -1,33 +1,76 @@
-.logo{
-    width: 100px;
-    height: 100px;
-    margin-left: 4%;
-}
-.account{
-    width: 80px;
-    height: 80px;
-    padding-top: 10px;
-}
-.name{
-    padding-top: 10%;
-    font-size: 18px;
-    margin-right: 9px;
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: row;
     gap: 30px;
-    padding-top: 8%;
+    padding: 0 25px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: red; */
 }
-.cartas{
+
+.logo {
+    border-radius: 50%;
+    width: 120px;
+    /* Ajusta el tamaño según sea necesario */
+    height: 76px;
+    object-fit: cover;
+}
+
+.account {
+    width: 140px;
+    height: 140px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "PT Sans", sans-serif;
+    font-style: normal;
+}
+
+.cartas {
+    background-color: #CDCDCD;
     border-radius: 15px;
-    margin-left: 6%;
-    margin-right: 6%;
-    margin-top: 8%;
+    margin: 10px 20px 20px 20px;
 }
-.aceptar{
-    --background:rgb(82, 77, 77);
+
+.aceptar {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "PT Sans", sans-serif;
+    font-style: normal;
+    text-transform: capitalize;
+    --background: #2C2C2C;
     margin-left: 65%;
     margin-top: -15%;
+}
+
+/* citas.page.css */
+.custom-action-sheet .action-sheet-header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.custom-action-sheet .action-sheet-button {
+    font-size: 16px;
+}
+
+.custom-action-sheet .action-sheet-content {
+    padding: 10px;
+}
+
+.custom-action-sheet .action-sheet-button {
+    display: flex;
+    align-items: center;
+}
+
+.custom-action-sheet .action-sheet-button ion-icon {
+    margin-right: 10px;
 }

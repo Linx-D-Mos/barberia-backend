@@ -11,14 +11,16 @@ import { Router } from '@angular/router'; // Importar Router desde @angular/rout
   standalone: true,
   imports: [CommonModule, FormsModule, IonicModule]
 })
+
 export class CargandoPage implements OnInit {
 
   constructor(private router: Router) { } // Asegúrate de usar 'router' en minúscula
 
   ngOnInit() {
+    // Después de 3 segundos, redirige a la página de citas
     setTimeout(() => {
-      this.router.navigate(['/home']);
-    }, 3000);
+      console.log("holaaaa");
+      this.router.navigate(['/citas']);
+    }, 3000); // Redirige después de 3000ms (3 segundos)
   }
-
 }
