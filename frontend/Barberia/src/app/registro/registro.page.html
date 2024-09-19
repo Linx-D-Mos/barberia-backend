@@ -1,25 +1,29 @@
 <ion-content>
   <ion-icon (click)="goBack()" class="back" size="large" name="arrow-back-outline"></ion-icon>
-  <div class="container">
+
     <ion-img class="logo" src="assets/logo.jpeg"></ion-img>
-    <div class="usuario">
-      <ion-input label="usuario" label-placement="floating" fill="outline">
-      </ion-input>
+    
+    <div class="datos">
+      <div class="usuario">
+        <ion-input label="usuario" label-placement="floating" fill="outline">
+        </ion-input>
+      </div>
+      <div class="email">
+        <ion-input type="email" label="Email" label-placement="floating" fill="outline" placeholder="ejemplo@gmail.com">
+        </ion-input>
+      </div>
+      <div class="numero">
+        <ion-input type="tel" label="Numero Movil" label-placement="floating" fill="outline" placeholder="312-999-2212">
+        </ion-input>
+      </div>
+      <div class="password">
+        <ion-input type="password" label="contraseña" label-placement="floating" fill="outline">
+        </ion-input>
+        <ion-button class="button">
+          Registrar
+        </ion-button>
+      </div>
     </div>
-    <div class="email">
-      <ion-input type="email" label="Email" label-placement="floating" fill="outline" placeholder="ejemplo@gmail.com">
-      </ion-input>
-    </div>
-    <div class="numero">
-      <ion-input type="tel" label="Numero Movil" label-placement="floating" fill="outline" placeholder="312-999-2212">
-      </ion-input>
-    </div>
-    <div class="password">
-      <ion-input type="password" label="contraseña" label-placement="floating" fill="outline">
-      </ion-input>
-    </div>
-    <ion-button class="button">
-      Registrar
-    </ion-button>
-  </div>
+   
+
 </ion-content>

@@ -17,9 +17,9 @@ body {
 
 .logo {
     border-radius: 50%;
-    width: 120px;
+    width: 45%;
     /* Ajusta el tamaño según sea necesario */
-    height: 76px;
+    
     object-fit: cover;
 }
 
@@ -38,18 +38,20 @@ body {
 .cartas {
     background-color: #CDCDCD;
     border-radius: 15px;
-    margin: 10px 20px 20px 20px;
+    margin: 6% 6% 6% 6%;
 }
 
+
+
 .aceptar {
-    font-size: 20px;
+    padding-left: 62%;
+    margin-top: -15%;
+    font-size: 18px;
     font-weight: bold;
     font-family: "PT Sans", sans-serif;
     font-style: normal;
     text-transform: capitalize;
     --background: #2C2C2C;
-    margin-left: 65%;
-    margin-top: -15%;
 }
 
 /* citas.page.css */

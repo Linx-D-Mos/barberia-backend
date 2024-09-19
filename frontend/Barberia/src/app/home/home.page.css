@@ -8,29 +8,30 @@ body {
   margin-top: 15%;
   width: 300px;
   height: 300px;
-  margin-left: 14%;
-  margin-right: 14px;
+  margin: auto;
 }
 
 .email {
   padding-top: 6%;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin: auto;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .password {
   margin-top: 10%;
-  margin-left: 10%;
-  margin-right: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .iniciemos {
-  margin-left: 10%;
-  margin-top: 10%;
-  width: 328px;
-  height: 50px;
-  font-size: 20px;
+  padding-top: 7%;
+  width: 100%;
+  
+  font-size: 21px;
   --background: rgb(49, 22, 199);
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .iniciemos:active{
@@ -39,19 +40,29 @@ body {
 
 .recuperar {
   margin-top: 8%;
-  margin-left: 94px;
+  padding-left: 19%;
+  padding-right: 5%;
 }
 
 .recuperar ion-label:active {
   color: rgb(61, 31, 231);
   text-decoration: underline;
+  width: 100%;
+  
 }
 
 .unete {
-  margin-left: 10%;
+  
+  padding-left: 10%;
+  padding-right: 10%;
   margin-top: 10%;
-  width: 328px;
-  height: 50px;
+  width: 100%;
+ 
   font-size: 20px;
   --background: rgb(177, 177, 177);
+}
+
+.containerlogs{
+  padding-left: 10%;
+  padding-right: 10%;
 }
