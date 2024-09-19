@@ -5,6 +5,68 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/cliente/barbershop_affiliate": {
+            "put": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Afiliarse a una peluquería",
+                "description": "Un cliente al registrarse debe elegir a qué peluquería se va a afiliar",
+                "operationId": "barbershopAffiliate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "barbershop_id"
+                                ],
+                                "properties": {
+                                    "barbershop_id": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "barbershop_id"
+                                ],
+                                "properties": {
+                                    "barbershop_id": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Afiliación a la peluquería exitosa"
+                    },
+                    "400": {
+                        "description": "Solictud incorrecta"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación, verifique los campos"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
         "/api/auth/profile": {
             "get": {
                 "tags": [
@@ -244,6 +306,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Cliente",
+            "description": "Cliente"
+        },
         {
             "name": "Autenticación",
             "description": "Autenticación"
