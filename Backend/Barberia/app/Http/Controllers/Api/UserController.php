@@ -38,7 +38,7 @@ class UserController
         return response()->json($user, 201);
     }
 
-     /**
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\User  $user
@@ -49,7 +49,6 @@ class UserController
     public function show(User $user)
     {
         return response()->json($user);
-
     }
 
     /**
@@ -68,10 +67,10 @@ class UserController
             'password' => 'sometimes|required|string|min:8|confirmed',
         ]);
 
-         // Actualiza  usuario
-         $user->update(array_filter($validatedData, fn($value) => !is_null($value)));
-         // Devuelve una respuesta
-         return response()->json($user);
+        // Actualiza  usuario
+        $user->update(array_filter($validatedData, fn($value) => !is_null($value)));
+        // Devuelve una respuesta
+        return response()->json($user);
     }
 
     /**
@@ -89,24 +88,60 @@ class UserController
         // Código 204 indica que la solicitud fue exitosa pero no hay contenido
     }
 
-     /**
-     * perfil del usuario
+    /**
+     * @OA\Get(
+     *     path="/api/auth/profile",
+     *     operationId="getProfile",
+     *     tags={"Autenticación"},
+     *     summary="Perfil de usuario",
+     *     description="Muestra toda la información del usuario",
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Response(response=200, description="Información del usuario"),
+     *     @OA\Response(response=401, description="No autorizado"),
+     *     @OA\Response(response=500, description="Error en el servidor, Token inválido"),
+     * )
+     *
+     * @OA\SecurityScheme(
+     *     securityScheme="ApiKeyAuth",
+     *     type="apiKey",
+     *     in="header",
+     *     name="Authorization",
+     *     description="Ingresar el token de autorización",
+     *     scheme="bearer",
+     *     bearerFormat="Bearer {token}",
+     * )
      */
-    /** public function profile(string $id)
-    *{
-     *   // obtener el perfil del usuario
-      *  $user = User::with('profile')->find($id);
-       * if ($user) {
-        *    return response()->json([
-         *       'success' => true,
-          *      'message' => 'Perfil del usuario',
-          *      'datum' => $user->profile
-          *  ]);
-        *}else{
-         *   return response()->json([
-          *      'success' => false,
-           *     'message' => 'Usuario no encontrado',
-            *]);
-       * }
-    *} */
+    public function profile(Request $request)
+    {
+        $userData = $request->user();
+
+        return response()->json([
+            "success" => 1,
+            "message" => "Información del usuario",
+            "datum" => $userData,
+        ], 200);
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/api/auth/logout",
+     *     operationId="Logout",
+     *     tags={"Autenticación"},
+     *     summary="Cerrar sesión",
+     *     description="Crerra la sesión del usuario y elimina el token de autorización",
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Response(response=200, description="Sesión cerrada"),
+     *     @OA\Response(response=401, description="No autorizado"),
+     *     @OA\Response(response=500, description="Error en el servidor, Token inválido"),
+     * )
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return response()->json([
+            "success" => 1,
+            "message" => "Sesión cerrada",
+        ], 200);
+    }
 }
