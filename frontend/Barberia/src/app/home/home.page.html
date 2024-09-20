@@ -1,23 +1,35 @@
 <ion-content [fullscreen]="true">
-  <div class="container">
-    <ion-img src="assets/logo.jpeg" alt="Logo" class="logo"></ion-img>
-    <div class="email">
-      <ion-input label="Correo" label-placement="floating" fill="outline"></ion-input>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <ion-img src="assets/logo.jpeg" alt="Logo" class="logo"></ion-img>
+      <div class="email">
+        <ion-input 
+          formControlName="email" 
+          label="Correo" 
+          label-placement="floating" 
+          fill="outline">
+        </ion-input>
+      </div>
+      <div class="password">
+        <ion-input 
+          formControlName="password" 
+          label="Contraseña" 
+          label-placement="floating" 
+          fill="outline" 
+          type="password">
+        </ion-input>
+      </div>
+      <ion-button class="iniciemos" type="submit">
+        iniciemos
+      </ion-button>
+      <div class="recuperar">
+        <ion-label routerLink="/recuperar">
+          ¿Has olvidado tu Contraseña?
+        </ion-label>
+      </div>
+      <ion-button routerLink="/registro" class="unete">
+        unete a nosotros
+      </ion-button>
     </div>
-    <div class="password">
-      <ion-input label="Contraseña" label-placement="floating" fill="outline" type="password"></ion-input>
-    </div>
-    <ion-button class="iniciemos" routerLink="/cargando">
-      iniciemos
-    </ion-button>
-    <div class="recuperar">
-      <ion-label routerLink="/recuperar">
-        ¿Has olvidado tu Contraseña?
-      </ion-label>
-    </div>
-    <ion-button routerLink="/registro" class="unete">
-      unete a nosotros
-    </ion-button>
-
-  </div>
+  </form>
 </ion-content>
