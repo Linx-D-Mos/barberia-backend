@@ -16,3 +16,6 @@
    **Ionic**: 7.2.0 (TypeScript)
    **SCSS**
    **HTML5**
+
+### Paquetes Instalados
+   **@capacitor/preferences**: ^6.0.2
