@@ -122,8 +122,10 @@ export class AuthService {
   async register(formValue: any) {
     const options = {
       url: environment.serverUrl + 'auth/register',
-      params: formValue,
-      data: formValue,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: JSON.stringify(formValue),
     };
 
     try {
@@ -174,8 +176,10 @@ export class AuthService {
   async login(formValue: any) {
     const options = {
       url: environment.serverUrl + 'auth/login',
-      params: formValue,
-      data: formValue,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: JSON.stringify(formValue),
     };
 
     try {
