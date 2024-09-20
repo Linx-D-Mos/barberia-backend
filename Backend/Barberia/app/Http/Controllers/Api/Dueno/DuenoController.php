@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api\Dueno;
 
+use App\Models\Profile;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class DuenoController
 {
@@ -49,21 +52,10 @@ class DuenoController
       * Update the specified resource in storage.
       *
       * @param  \Illuminate\Http\Request  $request
-      * @param  \App\Models\User  $user
-      * @return \Illuminate\Http\Response
       */
-     public function update(Request $request, User $user)
+     public function update(Request $request)
      {
-         $validatedData = $request->validate([
-             'name' => 'sometimes|required|string|max:250',
-             'celular' => 'sometimes|integer|digits:10',
-             'password' => 'sometimes|required|string|min:8|confirmed',
-         ]);
-
-          // Actualiza  usuario
-          $user->update(array_filter($validatedData, fn($value) => !is_null($value)));
-          // Devuelve una respuesta
-          return response()->json($user);
+         //
      }
 
     /**
@@ -78,5 +70,85 @@ class DuenoController
          $user->delete();
 
          return response()->json(null, 204);
+     }
+
+
+     public function registrarBarbero(Request $request) {
+
+        // Validaciones
+        $validatedData = Validator::make( $request->all(), [
+            'name' => 'required|string|max:250',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|numeric|digits:10|unique:users,phone',
+        ]);
+
+        // si falla la validación
+        if ($validatedData->fails()) {
+            return response()->json([
+                'success' => 0,
+                'message' => 'Error de validación, verifique los campos',
+                'errors' => $validatedData->errors(),
+            ], 422);
+        }
+
+        // Usuario
+        User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "password" => bcrypt($request->phone),
+        ]);
+
+        // Perfil
+        Profile::create([
+            'user_id' => User::where('email', $request->email)->first()->id,
+            'role_id' => Role::where('name', 'barber')->first()->id,
+        ]);
+
+        // Respuesta
+        return response()->json([
+            'success' => 1,
+            'message' => 'Barbero registrado correctamente',
+        ], 200);
+     }
+
+
+     public function registrarSecretary(Request $request) {
+
+        // Validaciones
+        $validatedData = Validator::make( $request->all(), [
+            'name' => 'required|string|max:250',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|numeric|digits:10|unique:users,phone',
+        ]);
+
+        // si falla la validación
+        if ($validatedData->fails()) {
+            return response()->json([
+                'success' => 0,
+                'message' => 'Error de validación, verifique los campos',
+                'errors' => $validatedData->errors(),
+            ], 422);
+        }
+
+        // Usuario
+        User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "password" => bcrypt($request->phone),
+        ]);
+
+        // Perfil
+        Profile::create([
+            'user_id' => User::where('email', $request->email)->first()->id,
+            'role_id' => Role::where('name', 'sercretary')->first()->id,
+        ]);
+
+        // Respuesta
+        return response()->json([
+            'success' => 1,
+            'message' => 'Secretari@ registrado correctamente',
+        ], 200);
      }
 }

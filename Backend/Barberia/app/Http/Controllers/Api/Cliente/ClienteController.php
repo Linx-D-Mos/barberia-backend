@@ -16,26 +16,7 @@ class ClienteController
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:250',
-            'celular' => 'required|integer|digits:10',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'celular' => $validatedData['celular'],
-            'password' => bcrypt($validatedData['password']),
-        ]);
-
-        return response()->json($user, 201);
-    }
-
+    
     /**
      * Display the specified resource.
      *
