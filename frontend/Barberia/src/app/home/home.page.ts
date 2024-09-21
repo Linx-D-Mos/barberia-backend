@@ -1,42 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonImg, IonButton, IonBackButton, IonTabButton, IonLabel, NavController } from '@ionic/angular/standalone';
-import {ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth/auth.service'; // Asegúrate de que la ruta sea correcta
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.css'],
   standalone: true,
-  imports: [ReactiveFormsModule,IonLabel, IonTabButton, IonBackButton, IonButton, IonImg, IonInput, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, RouterModule, RouterOutlet],
+  imports: [ReactiveFormsModule, IonLabel, IonTabButton, IonBackButton, IonButton, IonImg, IonInput, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, RouterModule, RouterOutlet],
 })
 export class HomePage implements OnInit {
-  loginForm: FormGroup;
+  constructor( private formBuilder: FormBuilder ) {
 
-  constructor(private nav: NavController, private formBuilder: FormBuilder ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required]],});
+    
+  }
+
+  loginForm!: FormGroup; // Formulario de login
+
+  isLogin = false; 
+
+  // private authService = inject(Auth2Service);
+  private authService = inject(AuthService);
+  
+  ngOnInit() {
+    /* Inincializamos el formulario */
+    this.loginForm = new FormGroup({
+      email: new FormControl(''),
+      password: new FormControl(''),
     });
   }
 
-  ngOnInit() {}
+  /* Función para el login */
+  login() {
+    this.isLogin = true;
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-  
-      // Credenciales correctas
-      const correctEmail = 'jdjjz19@gmail.com';
-      const correctPassword = 'aguirre12';
-  
-      // Verificación de credenciales
-      if (email === correctEmail && password === correctPassword) {
-        this.nav.navigateForward('/cargando'); // Cambia a la página de carga si es necesario
-      } else {
-        // Mostrar mensaje de error
-        this
-        // Aquí puedes mostrar una alerta o un mensaje en la interfaz
-      }
-    }
+    this.authService.login(this.loginForm.value)
+      .then((response) => {
+        if (response?.data?.success === 1) {
+          this.authService.navigateByUrl('/cargando');
+          this.isLogin = false;
+          this.loginForm.reset();
+        }else{
+          this.isLogin = false;
+          this.authService.showAlert(response?.data?.message);
+        }
+      })
+      .catch((e) => {
+        this.isLogin = false;
+        this.authService.showAlert(e?.error?.message);
+      });
   }
+
+  
+
+
 }

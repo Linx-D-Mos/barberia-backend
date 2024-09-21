@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm ">
     <div class="container">
       <ion-img src="assets/logo.jpeg" alt="Logo" class="logo"></ion-img>
       <div class="email">
@@ -19,7 +19,7 @@
           type="password">
         </ion-input>
       </div>
-      <ion-button class="iniciemos" type="submit">
+      <ion-button class="iniciemos" (click)="login()">
         iniciemos
       </ion-button>
       <div class="recuperar">
