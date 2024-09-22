@@ -84,12 +84,17 @@ class RegisterController extends Controller
             'role_id' => Role::where('name', 'client')->first()->id,
         ]);
 
+        $user = User::where('email', $request->email)->first();
+
+        // Enviar el código de verificación
+        $user->sendVerificationCode();
+
         // Crear el token de acceso
-        $token = User::where('email', $request->email)->first()->createToken($request->email)->plainTextToken;
+        $token = $user->createToken($request->email)->plainTextToken;
 
         return response()->json([
             'success' => 1,
-            'message' => 'Usuario registrado correctamente',
+            'message' => 'A su correo electrónico se le ha enviado un código de verificación',
             'token' => $token,
         ], 200);
     }

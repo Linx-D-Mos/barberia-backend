@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Traits\Security\ResetPassword;
+use App\Traits\Security\VerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,6 +15,7 @@ class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory, Notifiable;
+    use VerifyEmail, ResetPassword;
 
     /**
      * The attributes that are mass assignable.

@@ -97,51 +97,25 @@ class UserController
      *     description="Muestra toda la información del usuario",
      *     security={{"ApiKeyAuth": {}}},
      *     @OA\Response(response=200, description="Información del usuario"),
-     *     @OA\Response(response=401, description="No autorizado"),
+     *     @OA\Response(response=401, description="El usuario no está verificado"),
      *     @OA\Response(response=500, description="Error en el servidor, Token inválido"),
-     * )
-     *
-     * @OA\SecurityScheme(
-     *     securityScheme="ApiKeyAuth",
-     *     type="apiKey",
-     *     in="header",
-     *     name="Authorization",
-     *     description="Ingresar el token de autorización",
-     *     scheme="bearer",
-     *     bearerFormat="Bearer {token}",
      * )
      */
     public function profile(Request $request)
     {
-        $userData = $request->user();
+        $user = $request->user();
 
+        if (!$user->hasVerifiedEmail()) {
+            return response()->json([
+                "success" => 0,
+                "message" => "El usuario no está verificado",
+            ], 401);
+        }
+        
         return response()->json([
             "success" => 1,
             "message" => "Información del usuario",
-            "datum" => $userData,
-        ], 200);
-    }
-
-    /**
-     * @OA\Get(
-     *     path="/api/auth/logout",
-     *     operationId="Logout",
-     *     tags={"Autenticación"},
-     *     summary="Cerrar sesión",
-     *     description="Crerra la sesión del usuario y elimina el token de autorización",
-     *     security={{"ApiKeyAuth": {}}},
-     *     @OA\Response(response=200, description="Sesión cerrada"),
-     *     @OA\Response(response=401, description="No autorizado"),
-     *     @OA\Response(response=500, description="Error en el servidor, Token inválido"),
-     * )
-     */
-    public function logout(Request $request)
-    {
-        $request->user()->tokens()->delete();
-
-        return response()->json([
-            "success" => 1,
-            "message" => "Sesión cerrada",
+            "datum" => $user,
         ], 200);
     }
 }

@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'barbershop_id' => null,
         ]);
 
-        Profile::factory(8)->create();
+        Profile::factory(5)->create();
 
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Cliente;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class ClienteController
@@ -94,11 +95,20 @@ class ClienteController
      *    ),
      *    @OA\Response(response=200, description="Afiliación a la peluquería exitosa"),
      *    @OA\Response(response=400, description="Solictud incorrecta"),
+     *    @OA\Response(response=401, description="El usuario no está verificado"),
      *    @OA\Response(response=404, description="Recurso no encontrado"),
      *    @OA\Response(response=422, description="Error de validación, verifique los campos"),
      * )
      */
      public function barbershopAffiliate(Request $request){
+        // Validar que el usuario esté validado
+        if (!$request->user()->hasVerifiedEmail()) {
+            return response()->json([
+                'success' => 0,
+                'message' => 'El usuario no está verificado',
+            ], 401);
+        }
+        
         // Validaciones
         $validator = Validator::make($request->all(), [
             'barbershop_id' => 'required|numeric|exists:barbershops,id',

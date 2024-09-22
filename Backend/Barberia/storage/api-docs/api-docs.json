@@ -53,6 +53,9 @@
                     "400": {
                         "description": "Solictud incorrecta"
                     },
+                    "401": {
+                        "description": "El usuario no está verificado"
+                    },
                     "404": {
                         "description": "Recurso no encontrado"
                     },
@@ -80,33 +83,7 @@
                         "description": "Información del usuario"
                     },
                     "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error en el servidor, Token inválido"
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/auth/logout": {
-            "get": {
-                "tags": [
-                    "Autenticación"
-                ],
-                "summary": "Cerrar sesión",
-                "description": "Crerra la sesión del usuario y elimina el token de autorización",
-                "operationId": "Logout",
-                "responses": {
-                    "200": {
-                        "description": "Sesión cerrada"
-                    },
-                    "401": {
-                        "description": "No autorizado"
+                        "description": "El usuario no está verificado"
                     },
                     "500": {
                         "description": "Error en el servidor, Token inválido"
@@ -190,6 +167,32 @@
                         "description": "Error de validación, verifique los campos"
                     }
                 }
+            }
+        },
+        "/api/auth/logout": {
+            "get": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Cerrar sesión",
+                "description": "Crerra la sesión del usuario y elimina el token de autorización",
+                "operationId": "Logout",
+                "responses": {
+                    "200": {
+                        "description": "Sesión cerrada"
+                    },
+                    "401": {
+                        "description": "El usuario no está verificado"
+                    },
+                    "500": {
+                        "description": "Error en el servidor, Token inválido"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
             }
         },
         "/api/auth/register": {
@@ -290,6 +293,196 @@
                         "description": "Error de validación, verifique los campos"
                     }
                 }
+            }
+        },
+        "/api/auth/send_reset_password_code": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Enviar código de restablecimiento de contraseña",
+                "description": "Envía un código de restablecimiento de contraseña al correo electrónico del usuario",
+                "operationId": "sendResetPasswordCode",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Código de restablecimiento de contraseña enviado correctamente"
+                    },
+                    "400": {
+                        "description": "Correo electrónico no encontrado"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación, verifique los campos"
+                    }
+                }
+            }
+        },
+        "/api/auth/verify_reset_password_code": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Verificar código de restablecimiento de contraseña",
+                "description": "Verifica el código de restablecimiento de contraseña del usuario",
+                "operationId": "verifyResetPasswordCode",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "reset_password_code"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": ""
+                                    },
+                                    "reset_password_code": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "reset_password_code"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": ""
+                                    },
+                                    "reset_password_code": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Código de restablecimiento de contraseña verificado correctamente"
+                    },
+                    "400": {
+                        "description": "Código de restablecimiento de contraseña incorrecto"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación, verifique los campos"
+                    }
+                }
+            }
+        },
+        "/api/auth/verify_email": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Verificar correo electrónico",
+                "description": "Verifica el correo electrónico del usuario",
+                "operationId": "verifyEmail",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "code"
+                                ],
+                                "properties": {
+                                    "code": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "code"
+                                ],
+                                "properties": {
+                                    "code": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Correo electrónico verificado correctamente"
+                    },
+                    "400": {
+                        "description": "Código de verificación incorrecto"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación, verifique los campos"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
             }
         }
     },
