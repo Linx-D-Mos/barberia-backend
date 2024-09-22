@@ -19,7 +19,7 @@ body {
     border-radius: 50%;
     width: 45%;
     /* Ajusta el tamaño según sea necesario */
-    
+
     object-fit: cover;
 }
 
@@ -35,13 +35,22 @@ body {
     font-style: normal;
 }
 
+ion-skeleton-text {
+    --border-radius: 9999px;
+    --background: rgba(188, 0, 255, 0.065);
+    --background-rgb: 188, 0, 255;
+}
+
+.skeleton {
+    --background: rgba(255, 0, 0, 0.065);
+    --border-radius: 20px;
+}
+
 .cartas {
     background-color: #CDCDCD;
     border-radius: 15px;
     margin: 6% 6% 6% 6%;
 }
-
-
 
 .aceptar {
     padding-left: 62%;

@@ -1,10 +1,6 @@
 body {
- 
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.silla{
-    margin: auto;
 }
 
 ion-content {
@@ -12,6 +8,7 @@ ion-content {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%; /* Asegura que el contenedor ocupe toda la altura */
     text-align: center;
     font-style: oblique;
 }
@@ -23,51 +20,6 @@ ion-content {
     font-weight: bold;
 }
 
-ion-img {
-
-        animation: giro 2s linear infinite, temblo 5s linear infinite; /* Más rápido */
-    
-    }
-
 ion-spinner {
     --color: #000;
-}
-
-@keyframes giro {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(-360deg); /* Mantiene la rotación continua */
-    }
-}
-
-@keyframes temblor {
-    0% {
-        transform: rotate(0deg) translateX(0px);
-    }
-
-    10% {
-        transform: rotate(60deg) translateX(-3px);
-    }
-
-    20% {
-        transform: rotate(120deg) translateX(3px);
-    }
-
-    30% {
-        transform: rotate(180deg) translateX(-3px);
-    }
-
-    40% {
-        transform: rotate(240deg) translateX(3px);
-    }
-
-    50% {
-        transform: rotate(300deg) translateX(-3px);
-    }
-
-    100% {
-        transform: rotate(360deg) translateX(0px);
-    }
 }
