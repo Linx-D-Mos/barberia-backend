@@ -65,36 +65,30 @@ class LoginController extends Controller
         // Comprobar si el correo existe
         $user = User::where("email", $request->email)->first();
 
-        if (!empty($user)) {
-
-            // El correo existe
-            if (Hash::check($request->password, $user->password)) {
-
-                // Contraseña correcta
-
-                // El usuario no puede tener más de un token activo
-                $user->tokens()->delete();
-
-                $token = $user->createToken($request->email)->plainTextToken;
-
-                return response()->json([
-                    'success' => 1,
-                    "message" => "Inicio de sesión correcto",
-                    "token" => $token,
-                ], 200);
-            } else {
-
-                return response()->json([
-                    "success" => 0,
-                    "message" => "Contraseña incorrecta",
-                ], 402);
-            }
-        } else {
-
+        if ($user == null) {
             return response()->json([
                 "success" => 0,
                 "message" => "El correo electrónico no está registrado",
             ], 401);
         }
+
+        // El correo existe
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json([
+                "success" => 0,
+                "message" => "Contraseña incorrecta",
+            ], 402);
+        }
+
+        // El usuario no puede tener más de un token activo
+        $user->tokens()->delete();
+
+        $token = $user->createToken($request->email)->plainTextToken;
+
+        return response()->json([
+            'success' => 1,
+            "message" => "Inicio de sesión correcto",
+            "token" => $token,
+        ], 200);
     }
 }

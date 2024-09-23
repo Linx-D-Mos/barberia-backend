@@ -10,11 +10,25 @@ use App\Models\User;
 class UserController
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/users",
+     *     operationId="Usuarios",
+     *     tags={"Usuarios"},
+     *     summary="Lista de usuarios",
+     *     description="Muestra una lista de todos los usuarios",
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\Response(response=200, description="Lista de usuarios"),
+     *     @OA\Response(response=401, description="El usuario no está verificado"),
+     *     @OA\Response(response=500, description="Error en el servidor, Token inválido"),
+     * )
      */
     public function index()
     {
-        //
+        return response()->json([
+            'success' => 1,
+            'message' => 'Lista de usuarios',
+            'data' => User::all(),
+        ]);
     }
 
     /**

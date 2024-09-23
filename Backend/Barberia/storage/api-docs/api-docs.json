@@ -70,6 +70,32 @@
                 ]
             }
         },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Lista de usuarios",
+                "description": "Muestra una lista de todos los usuarios",
+                "operationId": "Usuarios",
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuarios"
+                    },
+                    "401": {
+                        "description": "El usuario no está verificado"
+                    },
+                    "500": {
+                        "description": "Error en el servidor, Token inválido"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
         "/api/auth/profile": {
             "get": {
                 "tags": [
@@ -502,6 +528,10 @@
         {
             "name": "Cliente",
             "description": "Cliente"
+        },
+        {
+            "name": "Usuarios",
+            "description": "Usuarios"
         },
         {
             "name": "Autenticación",

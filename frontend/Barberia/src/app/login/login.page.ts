@@ -1,28 +1,26 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonImg, IonButton, IonBackButton, IonTabButton, IonLabel, NavController } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonImg, IonButton, IonBackButton, IonTabButton, IonLabel, NavController, IonSpinner, IonInputPasswordToggle } from '@ionic/angular/standalone';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service'; // Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.css'],
+  templateUrl: 'login.page.html',
+  styleUrls: ['login.page.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, IonLabel, IonTabButton, IonBackButton, IonButton, IonImg, IonInput, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, RouterModule, RouterOutlet],
+  imports: [IonInputPasswordToggle, IonSpinner, ReactiveFormsModule, IonLabel, IonTabButton, IonBackButton, IonButton, IonImg, IonInput, IonItem, IonHeader, IonToolbar, IonTitle, IonContent, RouterModule, RouterOutlet],
 })
-export class HomePage implements OnInit {
-  constructor( private formBuilder: FormBuilder ) {
-
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],});
-    
-  }
+export class LoginPage implements OnInit {
 
   loginForm!: FormGroup; // Formulario de login
 
   isLogin = false; 
+
+  /**
+   * Variable para almacenar la contraseña
+   */
+  pass: any;
 
   // private authService = inject(Auth2Service);
   private authService = inject(AuthService);
@@ -30,8 +28,8 @@ export class HomePage implements OnInit {
   ngOnInit() {
     /* Inincializamos el formulario */
     this.loginForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
     });
   }
 
@@ -57,6 +55,13 @@ export class HomePage implements OnInit {
   }
 
   
+  /**
+   * Función para obtener el valor del input de la contraseña
+   * @param ev 
+   */
+  onInput(ev: any) {
+    this.pass = ev.target!.value;
+  }
 
 
 }

@@ -47,3 +47,5 @@ Route::prefix('/cliente')->group(function () {
         Route::put('/barbershop_affiliate', [ClienteController::class, 'barbershopAffiliate']);
     });
 });
+
+Route::apiResource('users', UserController::class)->middleware('auth:sanctum');
