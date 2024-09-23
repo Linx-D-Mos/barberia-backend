@@ -1,7 +1,5 @@
-# Este proyecto está hecho con las siguientes tecnologías:
 # Proyecto de Barbería
-
-## Tecnologías Utilizadas
+# Este proyecto está hecho con las siguientes tecnologías:
 
 ### Backend
    **Laravel Installer**: 5.7.0
