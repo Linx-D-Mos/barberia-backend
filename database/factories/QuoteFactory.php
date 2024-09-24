@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class QuoteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'client_id' => Profile::all()->random()->id,
+            'barber_id' => Profile::all()->random()->id,
+            'date' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'status' => $this->faker->randomElement(['RESERVADA', 'CONFIRMADA', 'CANCELADA']),
         ];
     }
 }

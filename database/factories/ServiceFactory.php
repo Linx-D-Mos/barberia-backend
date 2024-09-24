@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Barbershop;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence(6, true),
+            'description' => $this->faker->text(),
+            'price' => $this->faker->randomFloat(2, 10000, 70000),
+            'barbershop_id' => Barbershop::all()->random()->id,
         ];
     }
 }

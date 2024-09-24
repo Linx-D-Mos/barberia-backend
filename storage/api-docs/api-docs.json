@@ -5,7 +5,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/cliente/barbershop_affiliate": {
+        "/api/client/barbershop_affiliate": {
             "put": {
                 "tags": [
                     "Cliente"
@@ -54,7 +54,187 @@
                         "description": "Solictud incorrecta"
                     },
                     "401": {
-                        "description": "El usuario no está verificado"
+                        "description": "Debe verificar su correo electrónico para continuar."
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación, verifique los campos"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/owner/create_barber": {
+            "post": {
+                "tags": [
+                    "Dueno"
+                ],
+                "summary": "Crear barbero",
+                "description": "Crea un nuevo barbero en la aplicación",
+                "operationId": "CreateBarber",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone",
+                                    "barbershop_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "number",
+                                        "example": ""
+                                    },
+                                    "barbershop_id": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone",
+                                    "barbershop_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "number",
+                                        "example": ""
+                                    },
+                                    "barbershop_id": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Barbero registrado correctamente"
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta"
+                    },
+                    "401": {
+                        "description": "Debe verificar su correo electrónico para continuar."
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    },
+                    "422": {
+                        "description": "Error de validación, verifique los campos"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/root/create_owner": {
+            "post": {
+                "tags": [
+                    "Root"
+                ],
+                "summary": "Crear propietario",
+                "description": "Crea un nuevo propietario en la aplicación",
+                "operationId": "CreateOwner",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "phone": {
+                                        "type": "number",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Propietario registrado correctamente"
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta"
+                    },
+                    "401": {
+                        "description": "Debe verificar su correo electrónico para continuar."
                     },
                     "404": {
                         "description": "Recurso no encontrado"
@@ -208,7 +388,7 @@
                         "description": "Sesión cerrada"
                     },
                     "401": {
-                        "description": "El usuario no está verificado"
+                        "description": "Debe verificar su correo electrónico para continuar."
                     },
                     "500": {
                         "description": "Error en el servidor, Token inválido"
@@ -308,9 +488,6 @@
                     },
                     "400": {
                         "description": "Solicitud incorrecta"
-                    },
-                    "401": {
-                        "description": "El correo electrónico o el teléfono ya están registrados"
                     },
                     "404": {
                         "description": "Recurso no encontrado"
@@ -497,6 +674,9 @@
                     "400": {
                         "description": "Código de verificación incorrecto"
                     },
+                    "401": {
+                        "description": "Debe verificar su correo electrónico para continuar."
+                    },
                     "404": {
                         "description": "Recurso no encontrado"
                     },
@@ -528,6 +708,14 @@
         {
             "name": "Cliente",
             "description": "Cliente"
+        },
+        {
+            "name": "Dueno",
+            "description": "Dueno"
+        },
+        {
+            "name": "Root",
+            "description": "Root"
         },
         {
             "name": "Usuarios",

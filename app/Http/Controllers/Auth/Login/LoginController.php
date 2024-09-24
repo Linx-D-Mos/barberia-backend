@@ -83,11 +83,15 @@ class LoginController extends Controller
         // El usuario no puede tener más de un token activo
         $user->tokens()->delete();
 
-        $token = $user->createToken($request->email)->plainTextToken;
+        // rol del perfil del usuario
+        $role = $user->profile->role;
+
+        $token = $user->createToken($request->email, [$role->name])->plainTextToken;
 
         return response()->json([
             'success' => 1,
             "message" => "Inicio de sesión correcto",
+            'role' => $role->name,
             "token" => $token,
         ], 200);
     }

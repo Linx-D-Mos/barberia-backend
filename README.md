@@ -11,3 +11,4 @@
 
 ### Paquetes Instalados
    **@capacitor/preferences**: ^6.0.2
+   **amendozaaguiar/laravel-lat-es**: ^11.0

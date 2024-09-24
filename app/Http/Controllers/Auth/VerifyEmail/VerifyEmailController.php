@@ -38,6 +38,7 @@ class VerifyEmailController extends Controller
      *    ),
      *    @OA\Response(response=200, description="Correo electrónico verificado correctamente"),
      *    @OA\Response(response=400, description="Código de verificación incorrecto"),
+     *    @OA\Response(response=401, description="Debe verificar su correo electrónico para continuar."),
      *    @OA\Response(response=404, description="Recurso no encontrado"),
      *    @OA\Response(response=422, description="Error de validación, verifique los campos"),
      * )

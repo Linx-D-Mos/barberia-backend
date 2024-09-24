@@ -1,85 +1,65 @@
 <?php
 
-namespace App\Http\Controllers\Api\Dueno;
+namespace App\Http\Controllers\Api\Owner;
 
 use App\Models\Profile;
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
-class DuenoController
+class OwnerController
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Post(
+     *     path="/api/owner/create_barber",
+     *     operationId="CreateBarber",
+     *     tags={"Dueno"},
+     *     summary="Crear barbero",
+     *     description="Crea un nuevo barbero en la aplicación",
+     *     security={{"ApiKeyAuth": {}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"name", "email", "phone", "barbershop_id"},
+     *               @OA\Property(property="name", type="string", example=""),
+     *               @OA\Property(property="email", type="string", example=""),
+     *               @OA\Property(property="phone", type="number", example=""),
+     *               @OA\Property(property="barbershop_id", type="number", example=""),
+     *            ),
+     *        ),
+     *         @OA\MediaType(
+     *            mediaType="application/json",
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"name", "email", "phone", "barbershop_id"},
+     *               @OA\Property(property="name", type="string", example=""),
+     *               @OA\Property(property="email", type="string", example=""),
+     *               @OA\Property(property="phone", type="number", example=""),
+     *               @OA\Property(property="barbershop_id", type="number", example=""),
+     *            ),
+     *        ),
+     *    ),
+     *      @OA\Response(response=200, description="Barbero registrado correctamente"),
+     *      @OA\Response(response=400, description="Solicitud incorrecta"),
+     *      @OA\Response(response=401, description="Debe verificar su correo electrónico para continuar."),
+     *      @OA\Response(response=404, description="Recurso no encontrado"),
+     *      @OA\Response(response=422, description="Error de validación, verifique los campos"),
+     * )
      */
-    public function index()
-    {
-        //
-    }
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:250',
-            'celular' => 'required|integer|digits:10',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'celular' => $validatedData['celular'],
-            'password' => bcrypt($validatedData['password']),
-        ]);
-
-        return response()->json($user, 201);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-
-     public function show(User $user)
+     public function createBarber(Request $request) 
      {
-         return response()->json($user);
-     }
-
-      /**
-      * Update the specified resource in storage.
-      *
-      * @param  \Illuminate\Http\Request  $request
-      */
-     public function update(Request $request)
-     {
-         //
-     }
-
-    /**
-      * Remove the specified resource from storage.
-      *
-      * @param  \App\Models\User  $user
-      * @return \Illuminate\Http\Response
-      */
-
-     public function destroy(User $user)
-     {
-         $user->delete();
-
-         return response()->json(null, 204);
-     }
-
-
-     public function registrarBarbero(Request $request) {
 
         // Validaciones
         $validatedData = Validator::make( $request->all(), [
             'name' => 'required|string|max:250',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|numeric|digits:10|unique:users,phone',
+            'barbershop_id' => 'required|numeric|exists:barbershops,id',
         ]);
 
         // si falla la validación
@@ -96,6 +76,8 @@ class DuenoController
             "name" => $request->name,
             "email" => $request->email,
             "phone" => $request->phone,
+            // lo siguiente no debería ir aquí, pero por fines de prueba lo dejé
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'), 
             "password" => bcrypt($request->phone),
         ]);
 
@@ -103,6 +85,7 @@ class DuenoController
         Profile::create([
             'user_id' => User::where('email', $request->email)->first()->id,
             'role_id' => Role::where('name', 'barber')->first()->id,
+            'barbershop_id' => $request->barbershop_id,
         ]);
 
         // Respuesta

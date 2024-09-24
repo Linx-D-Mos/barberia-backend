@@ -118,13 +118,6 @@ class UserController
     public function profile(Request $request)
     {
         $user = $request->user();
-
-        if (!$user->hasVerifiedEmail()) {
-            return response()->json([
-                "success" => 0,
-                "message" => "El usuario no está verificado",
-            ], 401);
-        }
         
         return response()->json([
             "success" => 1,
