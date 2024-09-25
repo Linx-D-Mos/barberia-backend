@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class NoteController
@@ -11,7 +12,8 @@ class NoteController
      */
     public function index()
     {
-        //
+        $notas = Note::all();
+        return response()->json($notas);
     }
 
     /**

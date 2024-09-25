@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+//yo y que
+use App\Models\Profile;
+use App\Models\Note;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,9 @@ class NoteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'client_id' => Profile::all()->random()->id,
+            'date' => $this->faker->date(),
+            'content' => $this->faker->paragraph(),
         ];
     }
 }

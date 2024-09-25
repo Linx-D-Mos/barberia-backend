@@ -24,6 +24,8 @@ class UserController
      */
     public function index()
     {
+        User::all();
+
         return response()->json([
             'success' => 1,
             'message' => 'Lista de usuarios',
@@ -118,7 +120,7 @@ class UserController
     public function profile(Request $request)
     {
         $user = $request->user();
-        
+
         return response()->json([
             "success" => 1,
             "message" => "Información del usuario",

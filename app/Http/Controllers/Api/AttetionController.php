@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Service;
+use App\Models\Attention;
 use Illuminate\Http\Request;
 
-
-class ServiceController
+class AttetionController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $service = Service::all();
-        return response()->json($service);
+        $atenservi = Attention::all();
+        return response()->json($atenservi);
     }
 
     /**
@@ -22,24 +21,28 @@ class ServiceController
      */
     public function store(Request $request)
     {
-       //
+        //
     }
 
-
-
+    /**
+     * Display the specified resource.
+     */
     public function show(string $id)
     {
         //
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-
-
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(string $id)
     {
         //

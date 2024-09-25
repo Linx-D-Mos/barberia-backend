@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+//yo y que
+use App\Models\QuoteService;
+use App\Models\Quote;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +20,11 @@ class QuoteServiceFactory extends Factory
      */
     public function definition(): array
     {
+        $quoteIds = Quote::pluck('id')->toArray();
+        $serveceIds = Service::pluck('id')->toArray();
         return [
-            //
+            'quote_id' => $this->faker->randomElement($quoteIds),
+            'service_id' => $this->faker->randomElement($serveceIds),
         ];
     }
 }

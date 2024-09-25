@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Barbershop;
+use App\Models\Note;
 use App\Models\Profile;
 use App\Models\Role;
 use App\Models\Service;
 use App\Models\User;
+use App\Models\Quote;
+use App\Models\QuoteService;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -114,7 +117,21 @@ class DatabaseSeeder extends Seeder
             ],
         ]); */
 
-        Service::factory(30)->create();
+         Barbershop::factory(15)->create();
+         User::factory(20)->create();
+         Profile::factory(10)->create();
+         Service::factory(30)->create();
+         QuoteService::factory(30)->create();
+         Quote::factory(20)->create();
+         Note::factory(30)->create();
+
+         /* User::factory()->create([
+            'name' => 'Austin Porro',
+            'email' => 'wacho.porto@gmail.com',
+            'phone' => '3126547890',
+            'password' => bcrypt('987654'),
+*/
+
 
     }
 }

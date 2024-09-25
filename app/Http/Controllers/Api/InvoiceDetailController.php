@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Models\InvoiceDetail;
 use Illuminate\Http\Request;
 
-class AutetionController
+class InvoiceDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $invo = InvoiceDetail::all();
+        return response()->json($invo);
     }
 
     /**

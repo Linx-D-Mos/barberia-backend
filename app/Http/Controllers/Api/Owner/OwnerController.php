@@ -51,7 +51,7 @@ class OwnerController
      *      @OA\Response(response=422, description="Error de validación, verifique los campos"),
      * )
      */
-     public function createBarber(Request $request) 
+     public function createBarber(Request $request)
      {
 
         // Validaciones
@@ -77,7 +77,7 @@ class OwnerController
             "email" => $request->email,
             "phone" => $request->phone,
             // lo siguiente no debería ir aquí, pero por fines de prueba lo dejé
-            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'), 
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             "password" => bcrypt($request->phone),
         ]);
 
@@ -134,4 +134,94 @@ class OwnerController
             'message' => 'Secretari@ registrado correctamente',
         ], 200);
      }
+
+    //brrrrrrrrr
+     public function actualizaBarbero(Request $request, $id)
+    {
+        // Validar solicitud
+        $validatedData = Validator::make($request->all(), [
+            'name' => 'string|max:250',
+            'email' => 'email|max:255|unique:users,email',
+            'phone' => 'numeric|digits:10|unique:users,phone',
+        ]);
+
+        if($validatedData->fails()){
+            return response()->json([
+                'success' => 0,
+                'message' => 'Error de validacion, verifique los campos',
+                'error' => $validatedData->errors()
+            ],422);
+        }
+
+        $user = User::find($id);
+
+        // Comprobar si el barbero está registrado
+        if (!$user) {
+            return response()->json(['success' => 0, 'message' => 'Barbero no encontrado'], 404);
+        }
+
+        // Actualiza los datos del barbero
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->phone = $validatedData['phone'];
+
+        $user->save();
+
+        return response()->json([
+            'success' => 1,
+            'message' => 'Datos del barbero actualizados correctamente',
+        ], 200);
+    }
+
+    public function actualizarSecretary(Request $request, $id)
+    {
+        // Validar solicitud
+        $validatedData = Validator::make($request->all(), [
+            'name' => 'string|max:250',
+            'email' => 'email|max:255|unique:users,email',
+            'phone' => 'numeric|digits:10|unique:users,phone',
+        ]);
+
+        if($validatedData->fails()){
+            return response()->json([
+                'success' => 0,
+                'message' => 'Error de validacion, verifique los campos',
+                'error' => $validatedData->errors()
+            ],422);
+        }
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['success' => 0, 'message' => 'Secretari@ no encontrado'], 404);
+        }
+
+        // Actualizar los datos del secretario
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->phone = $validatedData['phone'];
+
+        $user->save(); // Guardar cambios
+
+        return response()->json([
+            'success' => 1,
+            'message' => 'Datos del secretari@ actualizados correctamente',
+        ], 200);
+    }
+
+    public function VerServiciosBarbero($id){
+        $barber = User::find($id);
+
+        if (!$barber) {
+            return response()->json(['success' => 0, 'message' => 'Barbero no encontrado'], 404);
+        }
+
+        $cantidadServicios = $barber->services()->count();
+
+        return response()->json([
+            'success' => 1,
+            'cantidad_servicios' => $cantidadServicios,
+            'message' => 'Cantidad de servicios del barbero obtenida correctamente',
+        ], 200);
+    }
 }

@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Service;
+use App\Models\Quote;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
-class ServiceController
+class QuoteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $service = Service::all();
-        return response()->json($service);
+        $cita = Quote::all();
+        return response()->json($cita);
+
     }
 
     /**
@@ -22,24 +23,28 @@ class ServiceController
      */
     public function store(Request $request)
     {
-       //
+        //
     }
 
-
-
+    /**
+     * Display the specified resource.
+     */
     public function show(string $id)
     {
         //
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-
-
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(string $id)
     {
         //

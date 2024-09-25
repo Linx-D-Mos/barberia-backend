@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProfileController
@@ -11,7 +12,8 @@ class ProfileController
      */
     public function index()
     {
-        //
+        $profiles = Profile::all();
+        return response()->json($profiles);
     }
 
     /**

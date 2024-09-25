@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Barbershop;
 use Illuminate\Http\Request;
 
 class BarberShopController
@@ -11,7 +12,8 @@ class BarberShopController
      */
     public function index()
     {
-        //
+        $barber = Barbershop::all();
+        return response()->json($barber);
     }
 
     /**
