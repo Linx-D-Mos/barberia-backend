@@ -135,8 +135,8 @@ class OwnerController
         ], 200);
      }
 
-    //brrrrrrrrr
-     public function actualizaBarbero(Request $request, $id)
+    //dos funciones para actualizar datos y otra para ver servicios
+     /*public function actualizaBarbero(Request $request, $id)
     {
         // Validar solicitud
         $validatedData = Validator::make($request->all(), [
@@ -223,5 +223,5 @@ class OwnerController
             'cantidad_servicios' => $cantidadServicios,
             'message' => 'Cantidad de servicios del barbero obtenida correctamente',
         ], 200);
-    }
+    } */
 }
