@@ -38,20 +38,7 @@ class UserController
      */
     public function store(Request $request)
     {
-        // validar solicitud
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:250',
-            'celular' => 'required|integer|digits:10',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'celular' => $validatedData['celular'],
-            'password' => bcrypt($validatedData['password']),
-        ]);
-
-        return response()->json($user, 201);
+        //
     }
 
     /**
@@ -71,22 +58,11 @@ class UserController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'sometimes|required|string|max:250',
-            'celular' => 'sometimes|integer|digits:10',
-            'password' => 'sometimes|required|string|min:8|confirmed',
-        ]);
-
-        // Actualiza  usuario
-        $user->update(array_filter($validatedData, fn($value) => !is_null($value)));
-        // Devuelve una respuesta
-        return response()->json($user);
+        //
     }
 
     /**

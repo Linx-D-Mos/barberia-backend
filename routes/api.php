@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PhotoController;
 use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\Barber\BarberController;
 use App\Http\Controllers\Api\ProfileController;
@@ -73,3 +74,7 @@ Route::get('/users', [UserController::class, 'index']);//ya esta
 Route::get('/profiles', [ProfileController::class, 'index']);//ya esta
 Route::get('/notes', [NoteController::class, 'index']);//infernal error 500
 Route::get('/quotes/services', [QuoteServiceController::class, 'index']);//ok pero no muestra nada
+
+Route::prefix('/photo')->middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::post('/upload', [PhotoController::class, 'uploadPhoto']);
+});

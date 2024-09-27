@@ -62,6 +62,8 @@ class LoginController extends Controller
             ], 422);
         }
 
+        $request['email'] = strtolower($request->email);
+
         // Comprobar si el correo existe
         $user = User::where("email", $request->email)->first();
 

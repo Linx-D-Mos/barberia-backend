@@ -76,6 +76,7 @@ class OwnerController
             "name" => $request->name,
             "email" => $request->email,
             "phone" => $request->phone,
+            'photo' => 'https://barber-connect-images.s3.us-east-2.amazonaws.com/default/default.jpg',
             // lo siguiente no debería ir aquí, pero por fines de prueba lo dejé
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             "password" => bcrypt($request->phone),

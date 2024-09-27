@@ -165,6 +165,46 @@
                 ]
             }
         },
+        "/api/photo/upload": {
+            "post": {
+                "tags": [
+                    "Foto"
+                ],
+                "summary": "Subir foto de perfil",
+                "description": "Subir foto de perfil para un usuario autenticado y verificado.",
+                "operationId": "SubirFoto",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "photo": {
+                                        "description": "Archivo de imagen (jpeg, png, jpg, gif, svg, bmp, webp)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Genial! Tu foto de perfil ha sido subida exitosamente."
+                    },
+                    "422": {
+                        "description": "Error de validación, verifique los campos"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
         "/api/root/create_owner": {
             "post": {
                 "tags": [
@@ -712,6 +752,10 @@
         {
             "name": "Dueno",
             "description": "Dueno"
+        },
+        {
+            "name": "Foto",
+            "description": "Foto"
         },
         {
             "name": "Root",

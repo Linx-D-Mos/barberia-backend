@@ -69,11 +69,15 @@ class RegisterController extends Controller
             ], 422);
         }
 
+        // Poner el correo en minúsculas
+        $request['email'] = strtolower($request->email);
+
         // Usuario
         User::create([
             "name" => $request->name,
             "email" => $request->email,
             "phone" => $request->phone,
+            'photo' => 'https://barber-connect-images.s3.us-east-2.amazonaws.com/default/default.jpg',
             "password" => bcrypt($request->password),
         ]);
 
