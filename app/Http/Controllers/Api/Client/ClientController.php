@@ -45,7 +45,8 @@ class ClientController
      *    @OA\Response(response=422, description="Error de validación, verifique los campos"),
      * )
      */
-     public function barbershopAffiliate(Request $request){
+    public function barbershopAffiliate(Request $request)
+    {
         // Validaciones
         $validator = Validator::make($request->all(), [
             'barbershop_id' => 'required|numeric|exists:barbershops,id',
@@ -70,5 +71,26 @@ class ClientController
             'success' => 1,
             'message' => 'Afiliación a la peluquería exitosa',
         ], 200);
-     }
+    }
+
+
+    public function perfil(Request $request)
+    {
+        $clientProfile = Profile::with('user', 'role', 'barbershop')
+            ->where('user_id', $request->user()->id)
+            ->first();
+
+        if (!$clientProfile) {
+            return response()->json([
+                'success' => 0,
+                'message' => 'No se encontró el perfil del cliente'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => 1,
+            'message' => 'Perfil del cliente',
+            'data' => $clientProfile
+        ]);
+    }
 }

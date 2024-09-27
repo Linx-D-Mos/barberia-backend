@@ -48,6 +48,8 @@ Route::prefix('/auth')->group(function () {
 Route::prefix('/client')->middleware(['auth:sanctum', 'ability:client', 'verified'])->group(function () {//404 not found
     // afiliarse a una barbería
     Route::put('/barbershop_affiliate', [ClientController::class, 'barbershopAffiliate']);
+    // ver perfil
+    Route::get('/profile', [ClientController::class, 'perfil']);
 });
 
 Route::apiResource('users', UserController::class)->middleware('auth:sanctum');// 500 internal error server
@@ -64,6 +66,13 @@ Route::prefix('/owner')->middleware(['auth:sanctum', 'ability:owner', 'verified'
     Route::post('/create_barber', [OwnerController::class, 'createBarber']);//404 not found
 });
 
+// Rutas para el barbero
+Route::prefix('/barber')->middleware(['auth:sanctum', 'ability:barber', 'verified'])->group(function () {
+    // ver perfil del barbero
+    Route::get('/profile', [BarberController::class, 'perfil']);
+    // ver citas pendientes
+    Route::get('/pending_quotes', [BarberController::class, 'citasPendientes']);
+});
 
 //brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 
