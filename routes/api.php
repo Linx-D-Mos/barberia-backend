@@ -4,7 +4,6 @@ use App\Http\Controllers\Api\PhotoController;
 use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\Barber\BarberController;
 use App\Http\Controllers\Api\ProfileController;
-use App\Http\Controllers\Api\NoteController;
 use App\Http\Controllers\Api\BarberShopController;
 
 use App\Http\Controllers\Api\Client\ClientController;
@@ -74,16 +73,23 @@ Route::prefix('/barber')->middleware(['auth:sanctum', 'ability:barber', 'verifie
     Route::get('/pending_quotes', [BarberController::class, 'citasPendientes']);
 });
 
-//brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
-
-Route::get('/services', [ApiServiceController::class, 'index']);//ya esta
-Route::get('/quotes', [QuoteController::class, 'index']);// esta ok pero no muestra nada
-Route::get('/barbershops', [BarbershopController::class, 'index']);//ya esta
-Route::get('/users', [UserController::class, 'index']);//ya esta
-Route::get('/profiles', [ProfileController::class, 'index']);//ya esta
-Route::get('/notes', [NoteController::class, 'index']);//infernal error 500
-Route::get('/quotes/services', [QuoteServiceController::class, 'index']);//ok pero no muestra nada
-
 Route::prefix('/photo')->middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/upload', [PhotoController::class, 'uploadPhoto']);
 });
+
+//brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
+Route::get('/services', [ApiServiceController::class, 'index']);//ya esta --> ruta de servicios para verlos
+Route::get('/services/search/name/{name}', [ApiServiceController::class, 'BuscarByName']);//ya esta
+Route::get('/services/search/price/{price}', [ApiServiceController::class, 'BuscarByPrice']);//ya esta
+
+Route::get('/owner/barbershops', [BarbershopController::class, 'index']);//ya esta -->ruta de barberos para verlos
+Route::get('/owner/barbershops/{barberia}/barbers', [BarberShopController::class, 'ShowBarberos']);
+Route::get('/owner/barbershops/{barberShop}/clients', [BarberShopController::class, 'showClientes']);//para ver los clientes
+
+Route::get('/users', [UserController::class, 'index']);//ya esta
+Route::get('/profiles', [ProfileController::class, 'index']);//ya esta
+
+
+Route::get('/quotes', [QuoteController::class, 'index']);// esta ok pero no muestra nada
+Route::get('/quotes/services', [QuoteServiceController::class, 'index']);//ok pero no muestra nada

@@ -47,4 +47,18 @@ class BarberShopController
     {
         //
     }
+
+    //funciones para ver los registros
+    public function ShowBarberos(Barbershop $barbershop){
+        //obtener los perfiles de los barberos que pertenecen a la barberia
+        $barberos = Profile::where('barbershop_id', $barbershop->id)->with('user')->get();
+        return response()->json($barberos);
+    }
+
+    public function showClientes(BarberShop $barberias)
+    {
+        $clientes = Profile::where('barbershop_id', $barberias->id)->where('role_id', '') ->with('user')->get();
+        // el '' es para darle el numero al cual este asignado el rol de cliente
+        return response()->json($clientes);
+    }
 }
