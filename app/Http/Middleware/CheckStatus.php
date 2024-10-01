@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerifyEmail
+class CheckStatus
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,12 @@ class VerifyEmail
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! Auth::check() || ! $request->user()->hasVerifiedEmail()) {
+        if (! Auth::check() || ! $request->user()->isActive()) {
             return response()->json([
                 'success' => 0,
-                'message' => 'Debe verificar su correo electrónico para continuar.'
+                'message' => 'No tienes permiso para realizar esta acción. Tu cuenta está Bloqueada.',
             ], 403);
         }
-
         return $next($request);
     }
 }

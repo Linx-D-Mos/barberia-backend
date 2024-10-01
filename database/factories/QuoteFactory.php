@@ -20,6 +20,7 @@ class QuoteFactory extends Factory
         return [
             'client_id' => Profile::all()->random()->id,
             'barber_id' => Profile::all()->random()->id,
+            // esto está malo @TyroneJos3
             'date' => $this->faker->dateTimeBetween('now', '+1 month'),
             'status' => $this->faker->randomElement(['RESERVADA', 'CONFIRMADA', 'CANCELADA']),
         ];

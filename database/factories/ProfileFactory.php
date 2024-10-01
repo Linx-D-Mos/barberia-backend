@@ -22,21 +22,21 @@ class ProfileFactory extends Factory
      */
     public function definition(): array
     {
-        static $userIds;
+        $role = Role::where('name', '!=', ['owner', ])->get()->random();
 
-        if (!$userIds) {
-            // Obtener todos los user_id que no tienen perfil en 'profiles'
-            $userIds = User::whereNotIn('id', Profile::pluck('user_id'))->pluck('id')->toArray();
+        $usersWithoutProfile = User::doesntHave('profile')->pluck('id')->toArray();
+        
+        $user_id = fake()->unique()->randomElement($usersWithoutProfile);
+        
+        $barbershop = Barbershop::where('owner_id', $user_id)->first();
+        if ($barbershop) {
+            $role = Role::where('name', 'owner')->first();
         }
-
-        // Obtener el próximo user_id disponible
-        $userId = array_shift($userIds);
         
         return [
-            'user_id' => $userId,
-            'role_id' => Role::all()->random()->id,
-            'barbershop_id' => Barbershop::all()->random()->id,
-            'status' => 'ACTIVO',
+            'user_id' => $user_id,
+            'role_id' => $role->id,
+            'barbershop_id' => $role->id === Role::where('name', 'owner')->first()->id ? null : Barbershop::all()->random()->id,
         ];
     }
 }

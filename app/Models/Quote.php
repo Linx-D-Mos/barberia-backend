@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Properties\CustomDateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
 {
     use HasFactory;
+    use CustomDateTime;
 
     /**
      * The attributes that are mass assignable.

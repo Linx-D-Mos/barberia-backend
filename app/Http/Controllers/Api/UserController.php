@@ -13,7 +13,7 @@ class UserController
      * @OA\Get(
      *     path="/api/users",
      *     operationId="Usuarios",
-     *     tags={"Usuarios"},
+     *     tags={"Root"},
      *     summary="Lista de usuarios",
      *     description="Muestra una lista de todos los usuarios",
      *     security={{"ApiKeyAuth": {}}},

@@ -74,6 +74,36 @@ class ClientController
     }
 
 
+    /**
+     * @OA\Get(
+     *     path="/api/client/perfil",
+     *     tags={"Cliente"},
+     *     summary="Obtener el perfil del cliente",
+     *     description="Retorna el perfil del cliente autenticado, incluyendo información del usuario, rol y barbería.",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Perfil del cliente",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="integer", example=1),
+     *             @OA\Property(property="message", type="string", example="Perfil del cliente"),
+     *             @OA\Property(property="data", type="object",
+     *                 @OA\Property(property="user", type="object"),
+     *                 @OA\Property(property="role", type="object"),
+     *                 @OA\Property(property="barbershop", type="object")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="No se encontró el perfil del cliente",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="integer", example=0),
+     *             @OA\Property(property="message", type="string", example="No se encontró el perfil del cliente")
+     *         )
+     *     ),
+     * )
+     */
     public function perfil(Request $request)
     {
         $clientProfile = Profile::with('user', 'role', 'barbershop')

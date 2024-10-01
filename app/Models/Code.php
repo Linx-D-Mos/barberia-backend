@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Properties\CustomSetAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Code extends Model
 {
     use HasFactory;
+    use CustomSetAttribute;
     
     /**
      * Indica que la tabla no debe mantener automáticamente las marcas de tiempo

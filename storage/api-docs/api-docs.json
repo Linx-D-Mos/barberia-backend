@@ -70,14 +70,96 @@
                 ]
             }
         },
-        "/api/owner/create_barber": {
+        "/api/client/perfil": {
+            "get": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Obtener el perfil del cliente",
+                "description": "Retorna el perfil del cliente autenticado, incluyendo información del usuario, rol y barbería.",
+                "operationId": "d93b2cd790b787ee51cf5e5afa47ac22",
+                "responses": {
+                    "200": {
+                        "description": "Perfil del cliente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Perfil del cliente"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "user": {
+                                                    "type": "object"
+                                                },
+                                                "role": {
+                                                    "type": "object"
+                                                },
+                                                "barbershop": {
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontró el perfil del cliente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "integer",
+                                            "example": 0
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No se encontró el perfil del cliente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/owner/barbershops/{barbershop}/create_barber": {
             "post": {
                 "tags": [
-                    "Dueno"
+                    "Dueño"
                 ],
                 "summary": "Crear barbero",
                 "description": "Crea un nuevo barbero en la aplicación",
                 "operationId": "CreateBarber",
+                "parameters": [
+                    {
+                        "name": "barbershop",
+                        "in": "path",
+                        "description": "ID de la barbería",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -86,54 +168,29 @@
                                 "required": [
                                     "name",
                                     "email",
-                                    "phone",
-                                    "barbershop_id"
+                                    "phone"
                                 ],
                                 "properties": {
                                     "name": {
                                         "type": "string",
-                                        "example": ""
+                                        "example": "John Doe"
                                     },
                                     "email": {
                                         "type": "string",
-                                        "example": ""
+                                        "example": "john@example.com"
                                     },
                                     "phone": {
-                                        "type": "number",
-                                        "example": ""
-                                    },
-                                    "barbershop_id": {
-                                        "type": "number",
-                                        "example": ""
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "email",
-                                    "phone",
-                                    "barbershop_id"
-                                ],
-                                "properties": {
-                                    "name": {
                                         "type": "string",
-                                        "example": ""
+                                        "example": "1234567890"
                                     },
-                                    "email": {
+                                    "nickname": {
                                         "type": "string",
-                                        "example": ""
+                                        "example": "Johnny"
                                     },
-                                    "phone": {
-                                        "type": "number",
-                                        "example": ""
-                                    },
-                                    "barbershop_id": {
-                                        "type": "number",
-                                        "example": ""
+                                    "birth": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1990-01-01"
                                     }
                                 },
                                 "type": "object"
@@ -149,13 +206,42 @@
                         "description": "Solicitud incorrecta"
                     },
                     "401": {
-                        "description": "Debe verificar su correo electrónico para continuar."
+                        "description": "No autorizado"
+                    },
+                    "403": {
+                        "description": "Prohibido"
                     },
                     "404": {
                         "description": "Recurso no encontrado"
                     },
                     "422": {
-                        "description": "Error de validación, verifique los campos"
+                        "description": "Error de validación"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/owner/barbershops": {
+            "get": {
+                "tags": [
+                    "Dueño"
+                ],
+                "summary": "Mis barberias",
+                "description": "Muestra todas las barberias del dueño",
+                "operationId": "getMyBarbershops",
+                "responses": {
+                    "200": {
+                        "description": "Barberias del dueño obtenidas correctamente"
+                    },
+                    "401": {
+                        "description": "El usuario no está verificado"
+                    },
+                    "500": {
+                        "description": "Error en el servidor, Token inválido"
                     }
                 },
                 "security": [
@@ -290,10 +376,103 @@
                 ]
             }
         },
+        "/api/root/owners": {
+            "get": {
+                "tags": [
+                    "Root"
+                ],
+                "summary": "Ver propietarios",
+                "description": "Muestra todos los propietarios registrados en la aplicación",
+                "operationId": "ShowOwners",
+                "responses": {
+                    "200": {
+                        "description": "Listado de propietarios"
+                    },
+                    "404": {
+                        "description": "Recurso no encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/root/barbershops/{barbershop}/block": {
+            "put": {
+                "tags": [
+                    "Root"
+                ],
+                "summary": "Bloquear barbería",
+                "description": "Bloquea una barbería en la aplicación",
+                "operationId": "BlockBarbershop",
+                "parameters": [
+                    {
+                        "name": "barbershop",
+                        "in": "path",
+                        "description": "ID de la barbería",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Barbería bloqueada correctamente"
+                    },
+                    "404": {
+                        "description": "Barbería no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/root/barbershops/{barbershop}/unblock": {
+            "put": {
+                "tags": [
+                    "Root"
+                ],
+                "summary": "Desbloquear barbería",
+                "description": "Desbloquea una barbería en la aplicación",
+                "operationId": "UnblockBarbershop",
+                "parameters": [
+                    {
+                        "name": "barbershop",
+                        "in": "path",
+                        "description": "ID de la barbería",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Barbería desbloqueada correctamente"
+                    },
+                    "404": {
+                        "description": "Barbería no encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
-                    "Usuarios"
+                    "Root"
                 ],
                 "summary": "Lista de usuarios",
                 "description": "Muestra una lista de todos los usuarios",
@@ -750,8 +929,8 @@
             "description": "Cliente"
         },
         {
-            "name": "Dueno",
-            "description": "Dueno"
+            "name": "Dueño",
+            "description": "Dueño"
         },
         {
             "name": "Foto",
@@ -760,10 +939,6 @@
         {
             "name": "Root",
             "description": "Root"
-        },
-        {
-            "name": "Usuarios",
-            "description": "Usuarios"
         },
         {
             "name": "Autenticación",

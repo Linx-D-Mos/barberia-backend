@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\Properties\CustomDateTime;
+use App\Traits\Properties\CustomSetAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Barbershop extends Model
 {
     use HasFactory;
+    use CustomDateTime;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +22,6 @@ class Barbershop extends Model
         'address',
         'phone',
         'number',
-        'tokenwaapi',
     ];
 
     /**
@@ -45,5 +47,13 @@ class Barbershop extends Model
     public function services()
     {
         return $this->hasMany(Service::class);
+    }
+
+    /**
+     * Obtener el propietario de la barbería
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
     }
 }

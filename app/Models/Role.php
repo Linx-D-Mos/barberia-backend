@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\Properties\CustomDateTime;
+use App\Traits\Properties\CustomSetAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
     use HasFactory;
+    use CustomDateTime, CustomSetAttribute;
 
     /**
      * The attributes that are mass assignable.

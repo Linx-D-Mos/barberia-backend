@@ -21,7 +21,7 @@ class NoteFactory extends Factory
     {
         return [
             'client_id' => Profile::all()->random()->id,
-            'date' => $this->faker->date(),
+            'date' => $this->faker->date(), // le falta el formato para que sea timestamp
             'content' => $this->faker->paragraph(),
         ];
     }

@@ -19,7 +19,10 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('roles');
             $table->unsignedBigInteger('barbershop_id')->nullable();
             $table->foreign('barbershop_id')->references('id')->on('barbershops');
-            $table->enum('status', ['ACTIVO', 'INACTIVO'])->default('ACTIVO');
+            $table->integer('starts')->default(0);
+            $table->timestamp('first_start')->nullable();
+            $table->timestamp('last_start')->nullable();
+            $table->enum('status', ['ACTIVO', 'BLOQUEADO'])->default('ACTIVO');
             $table->timestamps();
         });
     }

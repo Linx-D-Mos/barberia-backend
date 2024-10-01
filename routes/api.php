@@ -43,35 +43,55 @@ Route::prefix('/auth')->group(function () {
 
 });
 
-// Rutas para el perfil del cliente
-Route::prefix('/client')->middleware(['auth:sanctum', 'ability:client', 'verified'])->group(function () {//404 not found
-    // afiliarse a una barbería
-    Route::put('/barbershop_affiliate', [ClientController::class, 'barbershopAffiliate']);
-    // ver perfil
-    Route::get('/profile', [ClientController::class, 'perfil']);
-});
-
-Route::apiResource('users', UserController::class)->middleware('auth:sanctum');// 500 internal error server
-
-// Rutas para el root
+// TODO: Rutas para el ROOT
 Route::prefix('/root')->middleware(['auth:sanctum', 'ability:root', 'verified'])->group(function () {
     // crear un usuario owner
     Route::post('/create_owner', [RootController::class, 'createOwner']);
+    // ver todos los dueños
+    Route::get('/owners', [RootController::class, 'showOwners']);
+    // recursos de usuarios
+    Route::apiResource('users', UserController::class);
+
+    Route::prefix('/barbershops/{barbershop}')->group(function () {
+        // bloquear una barbería
+        Route::put('/block', [RootController::class, 'blockBarbershop']);
+        // desbloquear una barbería
+        Route::put('/unblock', [RootController::class, 'unblockBarbershop']);
+    });
 });
 
-// Rutas para el propietario
+// TODO: Rutas para el PROPIETARIO
 Route::prefix('/owner')->middleware(['auth:sanctum', 'ability:owner', 'verified'])->group(function () {
-    // crear un barbero
-    Route::post('/create_barber', [OwnerController::class, 'createBarber']);//404 not found
+    // ver mis barberías
+    Route::get('/barbershops', [OwnerController::class, 'myBarbershops']);
+
+    Route::prefix('/barbershops/{barbershop}')->middleware(['check.barbershop.status'])->group(function () {
+        // crear un barbero
+        Route::post('/create_barber', [OwnerController::class, 'createBarber']);
+    });
 });
 
-// Rutas para el barbero
-Route::prefix('/barber')->middleware(['auth:sanctum', 'ability:barber', 'verified'])->group(function () {
+// TODO: Rutas para el BARBERO
+Route::prefix('/barber')->middleware(['auth:sanctum', 'ability:barber', 'verified', 'active', 'babershop.status'])->group(function () {
     // ver perfil del barbero
-    Route::get('/profile', [BarberController::class, 'perfil']);
+    // Route::get('/profile', [BarberController::class, 'perfil']);
     // ver citas pendientes
     Route::get('/pending_quotes', [BarberController::class, 'citasPendientes']);
 });
+
+// TODO: Rutas para el perfil del CLIENTE
+Route::prefix('/client')->middleware(['auth:sanctum', 'ability:client', 'verified', 'active'])->group(function () {
+    // ver perfil
+    Route::get('/profile', [ClientController::class, 'perfil']);
+    // afiliarse a una barbería
+    Route::put('/barbershop_affiliate', [ClientController::class, 'barbershopAffiliate']);
+
+    // protección para las rutas que requieren que el usuario esté afiliado a una barbería
+    Route::middleware('babershop.status')->group(function () {
+
+    });
+});
+
 
 Route::prefix('/photo')->middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/upload', [PhotoController::class, 'uploadPhoto']);
@@ -83,7 +103,8 @@ Route::get('/services', [ApiServiceController::class, 'index']);//ya esta --> ru
 Route::get('/services/search/name/{name}', [ApiServiceController::class, 'BuscarByName']);//ya esta
 Route::get('/services/search/price/{price}', [ApiServiceController::class, 'BuscarByPrice']);//ya esta
 
-Route::get('/owner/barbershops', [BarbershopController::class, 'index']);//ya esta -->ruta de barberos para verlos
+// esta ruta está mala @TyroneJos3
+// Route::get('/owner/barbershops', [BarbershopController::class, 'index']);//ya esta -->ruta de barberos para verlos
 Route::get('/owner/barbershops/{barberia}/barbers', [BarberShopController::class, 'ShowBarberos']);
 Route::get('/owner/barbershops/{barberShop}/clients', [BarberShopController::class, 'showClientes']);//para ver los clientes
 

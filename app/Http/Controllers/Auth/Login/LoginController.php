@@ -85,6 +85,25 @@ class LoginController extends Controller
         // El usuario no puede tener más de un token activo
         $user->tokens()->delete();
 
+        // verificar si el usuario está bloqueado
+        if ($user->status == 'BLOQUEADO') {
+            return response()->json([
+                'success' => 0,
+                'message' => 'No puedes ingresar al sistema. Tu cuenta está bloqueada.'
+            ], 403);
+        }
+
+        // verificar si la berberia a la que pertenece un barbero está bloqueada
+        if ($user->profile->role->name == 'barber') {
+            $barbershop = $user->barbershop;
+            if ($barbershop->status == 'BLOQUEADA') {
+                return response()->json([
+                    'success' => 0,
+                    'message' => 'No puedes ingresar al sistema. La barbería está bloqueada.'
+                ], 403);
+            }
+        }
+
         // rol del perfil del usuario
         $role = $user->profile->role;
 

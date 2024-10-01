@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address')->unique();
-            $table->string('phone')->unique()->nullable();
+            $table->string('phone')->unique();
             $table->string('number')->unique()->nullable();
+            $table->unsignedBigInteger('owner_id');
+            $table->foreign('owner_id')->references('id')->on('users');
             $table->string('tokenwaapi')->unique()->nullable();
+            $table->enum('status', ['ACTIVA', 'BLOQUEADA'])->default('ACTIVA');
             $table->timestamps();
         });
     }

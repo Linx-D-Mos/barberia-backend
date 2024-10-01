@@ -4,7 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Traits\Properties\CustomDateTime;
+use App\Traits\Properties\CustomSetAttribute;
 use App\Traits\Security\ResetPassword;
+use App\Traits\Security\UserStatus;
 use App\Traits\Security\VerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,6 +19,8 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory, Notifiable;
     use VerifyEmail, ResetPassword;
+    use CustomDateTime, CustomSetAttribute;
+    use UserStatus;
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +32,8 @@ class User extends Authenticatable
         'email',
         'phone',
         'photo',
+        'nickname',
+        'birth',
         'password',
     ];
 
@@ -61,5 +68,13 @@ class User extends Authenticatable
     public function profile()
     {
         return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * Obtener las barberias que me pertenecen como dueño
+     */
+    public function barbershops()
+    {
+        return $this->hasMany(Barbershop::class, 'owner_id');
     }
 }

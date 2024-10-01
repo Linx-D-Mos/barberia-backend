@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerifyEmail
+class ReCheckBarbershopStatus
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,16 @@ class VerifyEmail
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! Auth::check() || ! $request->user()->hasVerifiedEmail()) {
+        $user = Auth::user();
+
+        $barbershop = $user->profile->barbershop;
+
+        if ($barbershop && $barbershop->status === 'BLOQUEADA') {
             return response()->json([
                 'success' => 0,
-                'message' => 'Debe verificar su correo electrónico para continuar.'
+                'message' => 'No puedes realizar acciones. La barbería está bloqueada.'
             ], 403);
         }
-
         return $next($request);
     }
 }
