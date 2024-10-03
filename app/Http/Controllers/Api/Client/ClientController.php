@@ -76,11 +76,11 @@ class ClientController
 
     /**
      * @OA\Get(
-     *     path="/api/client/perfil",
+     *     path="/api/client/profile",
      *     tags={"Cliente"},
      *     summary="Obtener el perfil del cliente",
      *     description="Retorna el perfil del cliente autenticado, incluyendo información del usuario, rol y barbería.",
-     *     security={{"bearerAuth":{}}},
+     *     security={{"ApiKeyAuth":{}}},
      *     @OA\Response(
      *         response=200,
      *         description="Perfil del cliente",

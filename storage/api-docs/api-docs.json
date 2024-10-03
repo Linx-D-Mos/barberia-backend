@@ -70,14 +70,14 @@
                 ]
             }
         },
-        "/api/client/perfil": {
+        "/api/client/profile": {
             "get": {
                 "tags": [
                     "Cliente"
                 ],
                 "summary": "Obtener el perfil del cliente",
                 "description": "Retorna el perfil del cliente autenticado, incluyendo información del usuario, rol y barbería.",
-                "operationId": "d93b2cd790b787ee51cf5e5afa47ac22",
+                "operationId": "f7447ebe3854dd0beb82dbb7d70d39a0",
                 "responses": {
                     "200": {
                         "description": "Perfil del cliente",
@@ -136,7 +136,7 @@
                 },
                 "security": [
                     {
-                        "bearerAuth": []
+                        "ApiKeyAuth": []
                     }
                 ]
             }

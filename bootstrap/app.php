@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Middleware\CheckForAnyAbility;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Laravel\Sanctum\Http\Middleware\CheckAbilities;
-use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
@@ -17,7 +16,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'abilities' => CheckAbilities::class,
             'ability' => CheckForAnyAbility::class,
             'verified' => \App\Http\Middleware\VerifyEmail::class,
             'active' => \App\Http\Middleware\CheckStatus::class,
