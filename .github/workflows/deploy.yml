@@ -1,96 +1,46 @@
-name: Deploy to VPS
+name: Deploy Laravel 11 Backend
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ main ]  # Ajusta esto según tu rama principal
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Configure SSH
-        uses: shivammathur/setup-ssh@v1  # Use v1 for SSH config flexibility
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          strict_host_key_checking: 'no'  # Allow dynamic key management
-          add_known_hosts: 'yes'  # Add known hosts securely
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'  # Asegúrate de que esta versión sea compatible con Laravel 11
 
-      - name: Set up PHP (Optional)
-        uses: shivammathur/setup-php@v2  # Consider including for server-side pre-checks
-        with:
-          php-version: '8.2'
+    - name: Install Composer Dependencies
+      run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@v2  # Use v2 for potential bug fixes
-        with:
-          script: |
-            set -e  # Exit on failure
+    - name: Run Tests
+      run: php artisan test
 
-            # Connect to VPS
-            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -p ${{ secrets.SSH_PORT }} <<'EOF'
+    - name: Setup SSH Key
+      uses: webfactory/ssh-agent@v0.5.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-            # Verify project directory
-            if [ ! -d ${{ secrets.SSH_PATH }} ]; then
-              echo "Project directory '${{ secrets.SSH_PATH }}' does not exist on the server."
-              exit 1
-            fi
+    - name: Add Host Key
+      run: echo "${{ secrets.KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
 
-            # Check for Git repository (optional)
-            if [ ! -d ${{ secrets.SSH_PATH }}/.git ]; then
-              echo "Initializing Git repository..."
-              git init
-              git remote add origin https://github.com/Linx-D-Mos/barberia-backend.git
-            fi
-
-            # Pull latest changes (handle conflicts gracefully)
-            git pull --rebase origin main || (
-              echo "Failed to pull cleanly. Attempting to resolve..."
-              git fetch --all
-              git reset --hard origin/main
-            )
-
-            # Verify Composer (optional)
-            if ! type composer >/dev/null 2>&1; then
-              echo "Composer not found. Please install Composer on the server."
-              exit 1
-            fi
-
-            # Update dependencies (optional)
-            composer install --no-dev --prefer-dist --no-scripts -q -o
-
-            # Copy .env if needed
-            if [ ! -f ${{ secrets.SSH_PATH }}/.env ] && [ -f ${{ secrets.SSH_PATH }}/.env.example ]; then
-              cp ${{ secrets.SSH_PATH }}/.env.example ${{ secrets.SSH_PATH }}/.env
-              echo "Created .env file from .env.example"
-            elif [ ! -f ${{ secrets.SSH_PATH }}/.env ]; then
-              echo "ERROR: No .env or .env.example file found."
-              exit 1
-            fi
-
-            # Verify artisan (optional)
-            if [ ! -f ${{ secrets.SSH_PATH }}/artisan ]; then
-              echo "ERROR: artisan file not found."
-              exit 1
-            fi
-
-            # Generate application key if needed
-            if [ ! -f ${{ secrets.SSH_PATH }}/.env ] || ! grep -q APP_KEY .env; then
-              php artisan key:generate --force
-            fi
-
-            # Run migrations and clear caches (optional)
-            php artisan migrate --force
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-
-            echo "Deployment completed successfully."
-
-            EOF
+    - name: Deploy to Server
+      env:
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_PATH: ${{ secrets.SSH_PATH }}
+      run: |
+        ssh $SSH_USER@$SSH_HOST << 'EOF'
+          cd $SSH_PATH
+          git pull origin main
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+          php artisan migrate --force
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+        EOF

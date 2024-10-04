@@ -1,0 +1,93 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install dependencies
+        run: composer install --no-dev --prefer-dist --no-scripts --no-interaction --optimize-autoloader --no-progress -q -o
+
+      - name: Setup SSH known_hosts
+        run: |
+          mkdir -p ~/.ssh || true
+          echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+        shell: bash
+      
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ${{ secrets.SSH_PATH }}
+            
+            # Verificar si el directorio tiene permisos adecuados
+            sudo chown -R $USER:$USER .
+            sudo chmod -R 755 .
+            
+            # Verificar si es un repositorio Git
+            if [ ! -d .git ]; then
+              echo "Initializing Git repository..."
+              git init
+              git remote add origin https://github.com/Linx-D-Mos/barberia-backend.git
+            fi
+            
+            # Intentar hacer un pull del repositorio
+            if git pull origin main; then
+              echo "Successfully pulled latest changes"
+            else
+              echo "Failed to pull. Attempting to resolve..."
+              git fetch --all
+              git reset --hard origin/main
+            fi
+            
+            # Verificar si Composer está instalado
+            if ! command -v composer &> /dev/null; then
+              echo "Composer not found. Please install Composer on the server."
+              exit 1
+            fi
+            
+            # Actualizar dependencias
+            composer install --no-dev --prefer-dist --no-scripts -q -o
+            
+            # Copiar .env de ejemplo si no existe
+            if [ ! -f .env ] && [ -f .env.example ]; then
+              cp .env.example .env
+              echo "Created .env file from .env.example"
+            elif [ ! -f .env ]; then
+              echo "ERROR: No .env or .env.example file found"
+              exit 1
+            fi
+            
+            # Verificar si artisan existe antes de usarlo
+            if [ -f artisan ]; then
+              # Generar clave de aplicación si no existe
+              php artisan key:generate --force
+              
+              # Ejecutar migraciones y limpiar cachés
+              php artisan migrate --force
+              php artisan config:cache
+              php artisan route:cache
+              php artisan view:cache
+            else
+              echo "ERROR: artisan file not found"
+              exit 1
+            fi
+            
+            echo "Deployment completed successfully"
