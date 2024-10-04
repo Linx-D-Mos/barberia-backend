@@ -21,20 +21,6 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --prefer-dist --no-scripts --no-interaction --optimize-autoloader --no-progress -q -o
 
-      # - name: Configurar archivo env
-      #   env:
-      #     APP_NAME: ${{ secrets.APP_NAME }}
-      #     APP_ENV: ${{ secrets.APP_ENV }}
-      #     APP_KEY: ${{ secrets.APP_KEY }}
-      #     APP_DEBUG: ${{ secrets.APP_DEBUG }}
-      #     APP_URL: ${{ secrets.APP_URL }}
-      #     DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
-      #     DB_HOST: ${{ secrets.DB_HOST }}
-      #     DB_PORT: ${{ secrets.DB_PORT }}
-      #     DB_DATABASE: ${{ secrets.DB_DATABASE }}
-      #     DB_USERNAME: ${{ secrets.DB_USERNAME }}
-      #     DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-
       - name: Setup SSH known_hosts
         run: |
           mkdir -p ~/.ssh || true
@@ -50,6 +36,10 @@ jobs:
           port: 22
           script: |
             cd ${{ secrets.SSH_PATH }}
+            
+            # Verificar si el directorio tiene permisos adecuados
+            sudo chown -R $USER:$USER .
+            sudo chmod -R 755 .
             
             # Verificar si es un repositorio Git
             if [ ! -d .git ]; then
