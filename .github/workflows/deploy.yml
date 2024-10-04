@@ -53,14 +53,24 @@ jobs:
             
             # Verificar si es un repositorio Git
             if [ ! -d .git ]; then
+              # Si el directorio no está vacío, mover los archivos existentes
+              if [ "$(ls -A)" ]; then
+                mkdir -p ../temp_backup
+                mv * ../temp_backup/
+              fi
               git clone https://github.com/Linx-D-Mos/barberia-backend.git .
+              # Restaurar los archivos si es necesario
+              if [ -d ../temp_backup ]; then
+                mv ../temp_backup/* .
+                rm -rf ../temp_backup
+              fi
             else
               git fetch --all
               git reset --hard origin/main
             fi
             
-            # Crear respaldo (solo si hay archivos para respaldar)
-            if [ "$(ls -A)" ]; then
+            # Crear respaldo (solo si hay archivos para respaldar y tenemos permisos)
+            if [ "$(ls -A)" ] && [ -w .. ]; then
               tar -czf "../backup_$(date +%F_%T).tar.gz" .
             fi
             
@@ -68,13 +78,24 @@ jobs:
             composer install --no-dev --prefer-dist --no-scripts -q -o
             
             # Copiar .env de ejemplo si no existe
-            [ ! -f .env ] && cp .env.example .env
+            if [ ! -f .env ] && [ -f .env.example ]; then
+              cp .env.example .env
+            elif [ ! -f .env ]; then
+              echo "ERROR: No .env or .env.example file found"
+              exit 1
+            fi
             
-            # Generar clave de aplicación si no existe
-            php artisan key:generate --force
-            
-            # Ejecutar migraciones y limpiar cachés
-            php artisan migrate --force
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
+            # Verificar si artisan existe antes de usarlo
+            if [ -f artisan ]; then
+              # Generar clave de aplicación si no existe
+              php artisan key:generate --force
+              
+              # Ejecutar migraciones y limpiar cachés
+              php artisan migrate --force
+              php artisan config:cache
+              php artisan route:cache
+              php artisan view:cache
+            else
+              echo "ERROR: artisan file not found"
+              exit 1
+            fi
