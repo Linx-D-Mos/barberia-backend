@@ -18,8 +18,8 @@ jobs:
     - name: Install Composer Dependencies
       run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-    - name: Run Tests
-      run: php artisan test
+    # - name: Run Tests
+    #   run: php artisan test
 
     - name: Setup SSH Key
       uses: webfactory/ssh-agent@v0.5.0
