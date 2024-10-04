@@ -35,10 +35,11 @@ jobs:
       #     DB_USERNAME: ${{ secrets.DB_USERNAME }}
       #     DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
-      - name: Add known hosts
-        run: 
-          mkdir -p ~/.ssh
+      - name: Setup SSH known_hosts
+        run: |
+          mkdir -p ~/.ssh || true
           echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+        shell: bash
       
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
