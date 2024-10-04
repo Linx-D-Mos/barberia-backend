@@ -4,14 +4,16 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Setup PHP
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
@@ -19,6 +21,25 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --prefer-dist --no-scripts -q -o
 
+      # - name: Configurar archivo env
+      #   env:
+      #     APP_NAME: ${{ secrets.APP_NAME }}
+      #     APP_ENV: ${{ secrets.APP_ENV }}
+      #     APP_KEY: ${{ secrets.APP_KEY }}
+      #     APP_DEBUG: ${{ secrets.APP_DEBUG }}
+      #     APP_URL: ${{ secrets.APP_URL }}
+      #     DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
+      #     DB_HOST: ${{ secrets.DB_HOST }}
+      #     DB_PORT: ${{ secrets.DB_PORT }}
+      #     DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      #     DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      #     DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+      - name: Add known hosts
+        run: 
+          mkdir -p ~/.ssh
+          echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+      
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
@@ -28,9 +49,16 @@ jobs:
           port: 22
           script: |
             cd ${{ secrets.SSH_PATH }}
+            # Opcional: Respaldar el contenido existente
+            tar -czf backup_$(date +%F_%T).tar.gz *
+            # Actualizar el repositorio
             git pull origin main
+            # Instalar dependencias
             composer install --no-dev --prefer-dist --no-scripts -q -o
-            php artisan migrate --force
+            # Actualizar el archivo .env con las variables de entorno
+            # Ejecutar migraciones
+            # php artisan migrate --force
+            # Opcional: Limpiar cachés de Laravel
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
