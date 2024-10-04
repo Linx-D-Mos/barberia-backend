@@ -50,16 +50,31 @@ jobs:
           port: 22
           script: |
             cd ${{ secrets.SSH_PATH }}
-            # Opcional: Respaldar el contenido existente
-            tar -czf backup_$(date +%F_%T).tar.gz *
-            # Actualizar el repositorio
-            git pull origin main
-            # Instalar dependencias
+            
+            # Verificar si es un repositorio Git
+            if [ ! -d .git ]; then
+              git clone https://github.com/Linx-D-Mos/barberia-backend.git .
+            else
+              git fetch --all
+              git reset --hard origin/main
+            fi
+            
+            # Crear respaldo (solo si hay archivos para respaldar)
+            if [ "$(ls -A)" ]; then
+              tar -czf "../backup_$(date +%F_%T).tar.gz" .
+            fi
+            
+            # Actualizar dependencias
             composer install --no-dev --prefer-dist --no-scripts -q -o
-            # Actualizar el archivo .env con las variables de entorno
-            # Ejecutar migraciones
-            # php artisan migrate --force
-            # Opcional: Limpiar cachés de Laravel
+            
+            # Copiar .env de ejemplo si no existe
+            [ ! -f .env ] && cp .env.example .env
+            
+            # Generar clave de aplicación si no existe
+            php artisan key:generate --force
+            
+            # Ejecutar migraciones y limpiar cachés
+            php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
