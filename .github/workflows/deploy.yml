@@ -19,7 +19,7 @@ jobs:
           php-version: '8.2'
 
       - name: Install dependencies
-        run: composer install --no-dev --prefer-dist --no-scripts -q -o
+        run: composer install --no-dev --prefer-dist --no-scripts --no-interaction --optimize-autoloader --no-progress -q -o
 
       # - name: Configurar archivo env
       #   env:
