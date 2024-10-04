@@ -53,25 +53,24 @@ jobs:
             
             # Verificar si es un repositorio Git
             if [ ! -d .git ]; then
-              # Si el directorio no está vacío, mover los archivos existentes
-              if [ "$(ls -A)" ]; then
-                mkdir -p ../temp_backup
-                mv * ../temp_backup/
-              fi
-              git clone https://github.com/Linx-D-Mos/barberia-backend.git .
-              # Restaurar los archivos si es necesario
-              if [ -d ../temp_backup ]; then
-                mv ../temp_backup/* .
-                rm -rf ../temp_backup
-              fi
+              echo "Initializing Git repository..."
+              git init
+              git remote add origin https://github.com/Linx-D-Mos/barberia-backend.git
+            fi
+            
+            # Intentar hacer un pull del repositorio
+            if git pull origin main; then
+              echo "Successfully pulled latest changes"
             else
+              echo "Failed to pull. Attempting to resolve..."
               git fetch --all
               git reset --hard origin/main
             fi
             
-            # Crear respaldo (solo si hay archivos para respaldar y tenemos permisos)
-            if [ "$(ls -A)" ] && [ -w .. ]; then
-              tar -czf "../backup_$(date +%F_%T).tar.gz" .
+            # Verificar si Composer está instalado
+            if ! command -v composer &> /dev/null; then
+              echo "Composer not found. Please install Composer on the server."
+              exit 1
             fi
             
             # Actualizar dependencias
@@ -80,6 +79,7 @@ jobs:
             # Copiar .env de ejemplo si no existe
             if [ ! -f .env ] && [ -f .env.example ]; then
               cp .env.example .env
+              echo "Created .env file from .env.example"
             elif [ ! -f .env ]; then
               echo "ERROR: No .env or .env.example file found"
               exit 1
@@ -99,3 +99,5 @@ jobs:
               echo "ERROR: artisan file not found"
               exit 1
             fi
+            
+            echo "Deployment completed successfully"
