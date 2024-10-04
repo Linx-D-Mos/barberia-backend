@@ -2,8 +2,7 @@ name: Deploy to VPS
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -13,81 +12,85 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-
-      - name: Install dependencies
-        run: composer install --no-dev --prefer-dist --no-scripts --no-interaction --optimize-autoloader --no-progress -q -o
-
-      - name: Setup SSH known_hosts
-        run: |
-          mkdir -p ~/.ssh || true
-          echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
-        shell: bash
-      
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@master
+      - name: Configure SSH
+        uses: shivammathur/setup-ssh@v1  # Use v1 for SSH config flexibility
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
+          strict_host_key_checking: 'no'  # Allow dynamic key management
+          add_known_hosts: 'yes'  # Add known hosts securely
+
+      - name: Set up PHP (Optional)
+        uses: shivammathur/setup-php@v2  # Consider including for server-side pre-checks
+        with:
+          php-version: '8.2'
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v2  # Use v2 for potential bug fixes
+        with:
           script: |
-            cd ${{ secrets.SSH_PATH }}
-            
-            # Verificar si el directorio tiene permisos adecuados
-            sudo chown -R $USER:$USER .
-            sudo chmod -R 755 .
-            
-            # Verificar si es un repositorio Git
-            if [ ! -d .git ]; then
+            set -e  # Exit on failure
+
+            # Connect to VPS
+            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -p ${{ secrets.SSH_PORT }} <<'EOF'
+
+            # Verify project directory
+            if [ ! -d ${{ secrets.SSH_PATH }} ]; then
+              echo "Project directory '${{ secrets.SSH_PATH }}' does not exist on the server."
+              exit 1
+            fi
+
+            # Check for Git repository (optional)
+            if [ ! -d ${{ secrets.SSH_PATH }}/.git ]; then
               echo "Initializing Git repository..."
               git init
               git remote add origin https://github.com/Linx-D-Mos/barberia-backend.git
             fi
-            
-            # Intentar hacer un pull del repositorio
-            if git pull origin main; then
-              echo "Successfully pulled latest changes"
-            else
-              echo "Failed to pull. Attempting to resolve..."
+
+            # Pull latest changes (handle conflicts gracefully)
+            git pull --rebase origin main || (
+              echo "Failed to pull cleanly. Attempting to resolve..."
               git fetch --all
               git reset --hard origin/main
-            fi
-            
-            # Verificar si Composer está instalado
-            if ! command -v composer &> /dev/null; then
+            )
+
+            # Verify Composer (optional)
+            if ! type composer >/dev/null 2>&1; then
               echo "Composer not found. Please install Composer on the server."
               exit 1
             fi
-            
-            # Actualizar dependencias
+
+            # Update dependencies (optional)
             composer install --no-dev --prefer-dist --no-scripts -q -o
-            
-            # Copiar .env de ejemplo si no existe
-            if [ ! -f .env ] && [ -f .env.example ]; then
-              cp .env.example .env
+
+            # Copy .env if needed
+            if [ ! -f ${{ secrets.SSH_PATH }}/.env ] && [ -f ${{ secrets.SSH_PATH }}/.env.example ]; then
+              cp ${{ secrets.SSH_PATH }}/.env.example ${{ secrets.SSH_PATH }}/.env
               echo "Created .env file from .env.example"
-            elif [ ! -f .env ]; then
-              echo "ERROR: No .env or .env.example file found"
+            elif [ ! -f ${{ secrets.SSH_PATH }}/.env ]; then
+              echo "ERROR: No .env or .env.example file found."
               exit 1
             fi
-            
-            # Verificar si artisan existe antes de usarlo
-            if [ -f artisan ]; then
-              # Generar clave de aplicación si no existe
+
+            # Verify artisan (optional)
+            if [ ! -f ${{ secrets.SSH_PATH }}/artisan ]; then
+              echo "ERROR: artisan file not found."
+              exit 1
+            fi
+
+            # Generate application key if needed
+            if [ ! -f ${{ secrets.SSH_PATH }}/.env ] || ! grep -q APP_KEY .env; then
               php artisan key:generate --force
-              
-              # Ejecutar migraciones y limpiar cachés
-              php artisan migrate --force
-              php artisan config:cache
-              php artisan route:cache
-              php artisan view:cache
-            else
-              echo "ERROR: artisan file not found"
-              exit 1
             fi
-            
-            echo "Deployment completed successfully"
+
+            # Run migrations and clear caches (optional)
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            echo "Deployment completed successfully."
+
+            EOF
