@@ -4,9 +4,13 @@ namespace App\Traits\Security;
 
 trait UserStatus
 {
-    // verificar que el usuario está activo
+    /**
+     * Determinar si el usuario está activo.
+     * 
+     * @return bool True si el usuario está activo, de lo contrario false.
+     */
     public function isActive()
     {
-        return $this->status === 'ACTIVO';
+        return $this->profile->status === 'ACTIVO';
     }
 }
