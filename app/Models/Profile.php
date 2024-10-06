@@ -80,5 +80,10 @@ class Profile extends Model
         return $this->hasMany(Attention::class);
     }
 
-    
+    /**
+     * Obtener las franjas horarias del perfil
+     */
+    public function timeSlots(){
+        return $this->hasMany(TimeSlot::class);
+    }
 }

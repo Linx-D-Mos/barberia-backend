@@ -18,10 +18,11 @@ class Service extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'barbershop_id',
         'name',
         'description',
+        'duration',
         'price',
-        'barbershop_id',
     ];
 
     /**

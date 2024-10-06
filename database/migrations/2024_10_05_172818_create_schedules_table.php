@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('barbershop_id')->nullable(); // barbería a la que pertenece el servicio
+            $table->unsignedBigInteger('barbershop_id'); // barbería a la que pertenece el horario
             $table->foreign('barbershop_id')->references('id')->on('barbershops');
-            $table->string('name'); // nombre del servicio
-            $table->longText('description')->nullable(); // descripción del servicio
-            $table->unsignedInteger('duration'); // duración del servicio en minutos
-            $table->decimal('price', 10, 2);
+            $table->string('day', 15); // día de la semana
+            $table->time('start_time')->nullable(); // hora de inicio
+            $table->time('end_time')->nullable(); // hora de fin
+            $table->boolean('is_available')->default(true); // indica si el horario está disponible
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('schedules');
     }
 };

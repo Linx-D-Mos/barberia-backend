@@ -56,4 +56,12 @@ class Barbershop extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Obtener los horarios de la barbería
+     */
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

@@ -1,0 +1,1153 @@
+{
+    "horario": {
+
+        "lunes": {
+
+            "estado": "disponible",
+
+            "franjas": {
+
+                "1": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:00",
+                    "horaFin": "07:30"
+                },
+                "2": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:30",
+                    "horaFin": "08:00"
+                },
+                "3": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:00",
+                    "horaFin": "08:30"
+                },
+                "4": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:30",
+                    "horaFin": "09:00"
+                },
+                "5": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:00",
+                    "horaFin": "09:30"
+                },
+                "6": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:30",
+                    "horaFin": "10:00"
+                },
+                "7": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:00",
+                    "horaFin": "10:30"
+                },
+                "8": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:30",
+                    "horaFin": "11:00"
+                },
+                "9": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:00",
+                    "horaFin": "11:30"
+                },
+                "10": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:30",
+                    "horaFin": "12:00"
+                },
+                "11": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:00",
+                    "horaFin": "12:30"
+                },
+                "12": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:30",
+                    "horaFin": "13:00"
+                },
+                "13": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:00",
+                    "horaFin": "13:30"
+                },
+                "14": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:30",
+                    "horaFin": "14:00"
+                },
+                "15": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:00",
+                    "horaFin": "14:30"
+                },
+                "16": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:30",
+                    "horaFin": "15:00"
+                },
+                "17": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:00",
+                    "horaFin": "15:30"
+                },
+                "18": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:30",
+                    "horaFin": "16:00"
+                },
+                "19": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:00",
+                    "horaFin": "16:30"
+                },
+                "20": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:30",
+                    "horaFin": "17:00"
+                },
+                "21": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:00",
+                    "horaFin": "17:30"
+                },
+                "22": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:30",
+                    "horaFin": "18:00"
+                },
+                "23": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:00",
+                    "horaFin": "18:30"
+                },
+                "24": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:30",
+                    "horaFin": "19:00"
+                },
+                "25": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:00",
+                    "horaFin": "19:30"
+                },
+                "26": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:30",
+                    "horaFin": "20:00"
+                }
+            }
+        },
+        "martes": {
+
+            "estado": "disponible",
+
+            "franjas": {
+
+                "1": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:00",
+                    "horaFin": "07:30"
+                },
+                "2": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:30",
+                    "horaFin": "08:00"
+                },
+                "3": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:00",
+                    "horaFin": "08:30"
+                },
+                "4": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:30",
+                    "horaFin": "09:00"
+                },
+                "5": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:00",
+                    "horaFin": "09:30"
+                },
+                "6": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:30",
+                    "horaFin": "10:00"
+                },
+                "7": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:00",
+                    "horaFin": "10:30"
+                },
+                "8": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:30",
+                    "horaFin": "11:00"
+                },
+                "9": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:00",
+                    "horaFin": "11:30"
+                },
+                "10": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:30",
+                    "horaFin": "12:00"
+                },
+                "11": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:00",
+                    "horaFin": "12:30"
+                },
+                "12": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:30",
+                    "horaFin": "13:00"
+                },
+                "13": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:00",
+                    "horaFin": "13:30"
+                },
+                "14": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:30",
+                    "horaFin": "14:00"
+                },
+                "15": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:00",
+                    "horaFin": "14:30"
+                },
+                "16": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:30",
+                    "horaFin": "15:00"
+                },
+                "17": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:00",
+                    "horaFin": "15:30"
+                },
+                "18": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:30",
+                    "horaFin": "16:00"
+                },
+                "19": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:00",
+                    "horaFin": "16:30"
+                },
+                "20": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:30",
+                    "horaFin": "17:00"
+                },
+                "21": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:00",
+                    "horaFin": "17:30"
+                },
+                "22": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:30",
+                    "horaFin": "18:00"
+                },
+                "23": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:00",
+                    "horaFin": "18:30"
+                },
+                "24": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:30",
+                    "horaFin": "19:00"
+                },
+                "25": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:00",
+                    "horaFin": "19:30"
+                },
+                "26": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:30",
+                    "horaFin": "20:00"
+                }
+            }
+        },
+        "miercoles": {
+
+            "estado": "disponible",
+
+            "franjas": {
+
+                "1": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:00",
+                    "horaFin": "07:30"
+                },
+                "2": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:30",
+                    "horaFin": "08:00"
+                },
+                "3": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:00",
+                    "horaFin": "08:30"
+                },
+                "4": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:30",
+                    "horaFin": "09:00"
+                },
+                "5": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:00",
+                    "horaFin": "09:30"
+                },
+                "6": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:30",
+                    "horaFin": "10:00"
+                },
+                "7": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:00",
+                    "horaFin": "10:30"
+                },
+                "8": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:30",
+                    "horaFin": "11:00"
+                },
+                "9": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:00",
+                    "horaFin": "11:30"
+                },
+                "10": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:30",
+                    "horaFin": "12:00"
+                },
+                "11": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:00",
+                    "horaFin": "12:30"
+                },
+                "12": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:30",
+                    "horaFin": "13:00"
+                },
+                "13": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:00",
+                    "horaFin": "13:30"
+                },
+                "14": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:30",
+                    "horaFin": "14:00"
+                },
+                "15": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:00",
+                    "horaFin": "14:30"
+                },
+                "16": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:30",
+                    "horaFin": "15:00"
+                },
+                "17": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:00",
+                    "horaFin": "15:30"
+                },
+                "18": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:30",
+                    "horaFin": "16:00"
+                },
+                "19": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:00",
+                    "horaFin": "16:30"
+                },
+                "20": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:30",
+                    "horaFin": "17:00"
+                },
+                "21": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:00",
+                    "horaFin": "17:30"
+                },
+                "22": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:30",
+                    "horaFin": "18:00"
+                },
+                "23": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:00",
+                    "horaFin": "18:30"
+                },
+                "24": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:30",
+                    "horaFin": "19:00"
+                },
+                "25": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:00",
+                    "horaFin": "19:30"
+                },
+                "26": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:30",
+                    "horaFin": "20:00"
+                }
+            }
+        },
+        "jueves": {
+
+            "estado": "disponible",
+
+            "franjas": {
+
+                "1": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:00",
+                    "horaFin": "07:30"
+                },
+                "2": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:30",
+                    "horaFin": "08:00"
+                },
+                "3": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:00",
+                    "horaFin": "08:30"
+                },
+                "4": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:30",
+                    "horaFin": "09:00"
+                },
+                "5": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:00",
+                    "horaFin": "09:30"
+                },
+                "6": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:30",
+                    "horaFin": "10:00"
+                },
+                "7": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:00",
+                    "horaFin": "10:30"
+                },
+                "8": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:30",
+                    "horaFin": "11:00"
+                },
+                "9": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:00",
+                    "horaFin": "11:30"
+                },
+                "10": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:30",
+                    "horaFin": "12:00"
+                },
+                "11": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:00",
+                    "horaFin": "12:30"
+                },
+                "12": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:30",
+                    "horaFin": "13:00"
+                },
+                "13": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:00",
+                    "horaFin": "13:30"
+                },
+                "14": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:30",
+                    "horaFin": "14:00"
+                },
+                "15": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:00",
+                    "horaFin": "14:30"
+                },
+                "16": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:30",
+                    "horaFin": "15:00"
+                },
+                "17": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:00",
+                    "horaFin": "15:30"
+                },
+                "18": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:30",
+                    "horaFin": "16:00"
+                },
+                "19": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:00",
+                    "horaFin": "16:30"
+                },
+                "20": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:30",
+                    "horaFin": "17:00"
+                },
+                "21": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:00",
+                    "horaFin": "17:30"
+                },
+                "22": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:30",
+                    "horaFin": "18:00"
+                },
+                "23": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:00",
+                    "horaFin": "18:30"
+                },
+                "24": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:30",
+                    "horaFin": "19:00"
+                },
+                "25": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:00",
+                    "horaFin": "19:30"
+                },
+                "26": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:30",
+                    "horaFin": "20:00"
+                }
+            }
+        },
+        "viernes": {
+
+            "estado": "disponible",
+
+            "franjas": {
+
+                "1": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:00",
+                    "horaFin": "07:30"
+                },
+                "2": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:30",
+                    "horaFin": "08:00"
+                },
+                "3": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:00",
+                    "horaFin": "08:30"
+                },
+                "4": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:30",
+                    "horaFin": "09:00"
+                },
+                "5": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:00",
+                    "horaFin": "09:30"
+                },
+                "6": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:30",
+                    "horaFin": "10:00"
+                },
+                "7": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:00",
+                    "horaFin": "10:30"
+                },
+                "8": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:30",
+                    "horaFin": "11:00"
+                },
+                "9": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:00",
+                    "horaFin": "11:30"
+                },
+                "10": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:30",
+                    "horaFin": "12:00"
+                },
+                "11": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:00",
+                    "horaFin": "12:30"
+                },
+                "12": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:30",
+                    "horaFin": "13:00"
+                },
+                "13": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:00",
+                    "horaFin": "13:30"
+                },
+                "14": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:30",
+                    "horaFin": "14:00"
+                },
+                "15": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:00",
+                    "horaFin": "14:30"
+                },
+                "16": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:30",
+                    "horaFin": "15:00"
+                },
+                "17": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:00",
+                    "horaFin": "15:30"
+                },
+                "18": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:30",
+                    "horaFin": "16:00"
+                },
+                "19": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:00",
+                    "horaFin": "16:30"
+                },
+                "20": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:30",
+                    "horaFin": "17:00"
+                },
+                "21": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:00",
+                    "horaFin": "17:30"
+                },
+                "22": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:30",
+                    "horaFin": "18:00"
+                },
+                "23": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:00",
+                    "horaFin": "18:30"
+                },
+                "24": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:30",
+                    "horaFin": "19:00"
+                },
+                "25": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:00",
+                    "horaFin": "19:30"
+                },
+                "26": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:30",
+                    "horaFin": "20:00"
+                }
+            }
+        },
+        "sabado": {
+
+            "estado": "disponible",
+
+            "franjas": {
+
+                "1": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:00",
+                    "horaFin": "07:30"
+                },
+                "2": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:30",
+                    "horaFin": "08:00"
+                },
+                "3": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:00",
+                    "horaFin": "08:30"
+                },
+                "4": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:30",
+                    "horaFin": "09:00"
+                },
+                "5": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:00",
+                    "horaFin": "09:30"
+                },
+                "6": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:30",
+                    "horaFin": "10:00"
+                },
+                "7": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:00",
+                    "horaFin": "10:30"
+                },
+                "8": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:30",
+                    "horaFin": "11:00"
+                },
+                "9": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:00",
+                    "horaFin": "11:30"
+                },
+                "10": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:30",
+                    "horaFin": "12:00"
+                },
+                "11": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:00",
+                    "horaFin": "12:30"
+                },
+                "12": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:30",
+                    "horaFin": "13:00"
+                },
+                "13": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:00",
+                    "horaFin": "13:30"
+                },
+                "14": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:30",
+                    "horaFin": "14:00"
+                },
+                "15": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:00",
+                    "horaFin": "14:30"
+                },
+                "16": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:30",
+                    "horaFin": "15:00"
+                },
+                "17": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:00",
+                    "horaFin": "15:30"
+                },
+                "18": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:30",
+                    "horaFin": "16:00"
+                },
+                "19": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:00",
+                    "horaFin": "16:30"
+                },
+                "20": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:30",
+                    "horaFin": "17:00"
+                },
+                "21": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:00",
+                    "horaFin": "17:30"
+                },
+                "22": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:30",
+                    "horaFin": "18:00"
+                },
+                "23": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:00",
+                    "horaFin": "18:30"
+                },
+                "24": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:30",
+                    "horaFin": "19:00"
+                },
+                "25": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:00",
+                    "horaFin": "19:30"
+                },
+                "26": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:30",
+                    "horaFin": "20:00"
+                }
+            }
+        },
+        "domingo": {
+
+            "estado": "disponible",
+
+            "franjas": {
+
+                "1": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:00",
+                    "horaFin": "07:30"
+                },
+                "2": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "07:30",
+                    "horaFin": "08:00"
+                },
+                "3": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:00",
+                    "horaFin": "08:30"
+                },
+                "4": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "08:30",
+                    "horaFin": "09:00"
+                },
+                "5": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:00",
+                    "horaFin": "09:30"
+                },
+                "6": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "09:30",
+                    "horaFin": "10:00"
+                },
+                "7": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:00",
+                    "horaFin": "10:30"
+                },
+                "8": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "10:30",
+                    "horaFin": "11:00"
+                },
+                "9": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:00",
+                    "horaFin": "11:30"
+                },
+                "10": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "11:30",
+                    "horaFin": "12:00"
+                },
+                "11": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:00",
+                    "horaFin": "12:30"
+                },
+                "12": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "12:30",
+                    "horaFin": "13:00"
+                },
+                "13": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:00",
+                    "horaFin": "13:30"
+                },
+                "14": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "13:30",
+                    "horaFin": "14:00"
+                },
+                "15": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:00",
+                    "horaFin": "14:30"
+                },
+                "16": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "14:30",
+                    "horaFin": "15:00"
+                },
+                "17": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:00",
+                    "horaFin": "15:30"
+                },
+                "18": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "15:30",
+                    "horaFin": "16:00"
+                },
+                "19": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:00",
+                    "horaFin": "16:30"
+                },
+                "20": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "16:30",
+                    "horaFin": "17:00"
+                },
+                "21": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:00",
+                    "horaFin": "17:30"
+                },
+                "22": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "17:30",
+                    "horaFin": "18:00"
+                },
+                "23": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:00",
+                    "horaFin": "18:30"
+                },
+                "24": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "18:30",
+                    "horaFin": "19:00"
+                },
+                "25": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:00",
+                    "horaFin": "19:30"
+                },
+                "26": {
+                    "estado": "disponible",
+                    "cita_id": null,
+                    "horaInicio": "19:30",
+                    "horaFin": "20:00"
+                }
+            }
+        }
+    }
+}

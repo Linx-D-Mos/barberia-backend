@@ -20,6 +20,7 @@ class Quote extends Model
         'client_id',
         'barber_id',
         'assigned',
+        'slots',
         'status',
     ];
 

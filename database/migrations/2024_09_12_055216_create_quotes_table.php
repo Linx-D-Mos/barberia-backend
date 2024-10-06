@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreign('client_id')->references('id')->on('profiles');
             $table->unsignedBigInteger('barber_id')->nullable();
             $table->foreign('barber_id')->references('id')->on('profiles');
-            $table->timestamp('assigned');
+            $table->timestamp('assigned'); // fecha y hora de la cita
+            $table->unsignedInteger('slots'); // cantidad de franjas horarias que se ocuparán
             $table->enum('status', ['RESERVADA', 'CANCELADA', 'TERMINADA', 'ACEPTADA'])->default('RESERVADA');
             $table->timestamps();
         });
