@@ -38,7 +38,22 @@ class PhotoController extends Controller
     public function uploadPhoto(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,bmp,webp|max:2048',
+            'photo' => [
+                'required',
+                'string',
+                'max:2097152', // 2MB en bytes
+                function ($attribute, $value, $fail) {
+                    $allowed_types = ['jpeg', 'png', 'jpg', 'gif', 'svg', 'bmp', 'webp'];
+                    $image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $value));
+                    $f = finfo_open();
+                    $mime_type = finfo_buffer($f, $image_data, FILEINFO_MIME_TYPE);
+                    finfo_close($f);
+                    $extension = explode('/', $mime_type)[1];
+                    if (!in_array($extension, $allowed_types)) {
+                        $fail("El campo photo debe ser un archivo de tipo: " . implode(', ', $allowed_types) . ".");
+                    }
+                },
+            ],
         ]);
 
         if ($validator->fails()) {
@@ -57,17 +72,18 @@ class PhotoController extends Controller
             Storage::disk('s3')->delete('profiles/' . $name);
         }
 
-        // obtener la foto
-        $photo = $request->file('photo');
+
+        // Procesar la imagen
+        $photo = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $request->photo));
 
         // nombre de la foto
-        $photoName = $user->phone . '.' . $photo->extension();
+        $photoName = $user->phone . '.png';
 
         // subir la foto al bucket de S3
-        $path = Storage::disk('s3')->putFileAs('profiles', $photo, $photoName);
+        Storage::disk('s3')->put('profiles/' . $photoName, $photo);
 
         // obtener la url de la foto
-        $url = Storage::url($path);
+        $url = Storage::url('profiles/' . $photoName);
 
         // actualizar la foto de perfil del usuario
         $user->update([
