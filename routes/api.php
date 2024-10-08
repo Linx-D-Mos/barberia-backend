@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\BarberShopController;
 
 use App\Http\Controllers\Api\Client\ClientController;
+use App\Http\Controllers\Api\Owner\ManageBarbersController;
 use App\Http\Controllers\Api\Owner\OwnerController;
 use App\Http\Controllers\Api\QuoteServiceController;
 use App\Http\Controllers\Api\Root\RootController;
@@ -68,7 +69,7 @@ Route::prefix('/owner')->middleware(['auth:sanctum', 'ability:owner', 'verified'
 
     Route::prefix('/barbershops/{barbershop}')->middleware(['check.barbershop.status'])->group(function () {
         // crear un barbero
-        Route::post('/create_barber', [OwnerController::class, 'createBarber']);
+        Route::post('/create_barber', [ManageBarbersController::class, 'createBarber']);
     });
 });
 
