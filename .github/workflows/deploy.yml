@@ -35,12 +35,8 @@ jobs:
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_PATH: ${{ secrets.SSH_PATH }}
       run: |
-        ssh $SSH_USER@$SSH_HOST << 'EOF'
-          cd $SSH_PATH
-          git pull origin main
-          composer install --no-interaction --prefer-dist --optimize-autoloader
-          php artisan migrate --force
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-        EOF 
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" README.md ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+        # ssh $SSH_USER@$SSH_HOST << 'EOF'
+          
+          # php artisan migrate
+        # EOF 
