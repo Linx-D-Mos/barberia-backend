@@ -36,6 +36,15 @@ jobs:
         SSH_PATH: ${{ secrets.SSH_PATH }}
       run: |
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          cd ${{ secrets.SSH_PATH }}
+          composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          # php artisan migrate --force
+          # php artisan config:cache
+          # php artisan route:cache
+          # php artisan view:cache
+          php artisan serve --host=0.0.0.0 --port=8000 &
+        EOF
         # ssh $SSH_USER@$SSH_HOST << 'EOF'
           
           # php artisan migrate
