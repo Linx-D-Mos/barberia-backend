@@ -20,6 +20,10 @@ use App\Http\Controllers\Auth\VerifyEmail\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Architecture\Services\ServiceContainer;
 
+Route::get('/test', function () {
+    return response()->json(['message' => 'API is working']);
+});
+
 Route::prefix('/auth')->group(function () {
 
     Route::post('/login', [LoginController::class, 'login']);// 404 not found
