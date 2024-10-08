@@ -35,7 +35,7 @@ jobs:
         SSH_USER: ${{ secrets.SSH_USER }}
         SSH_PATH: ${{ secrets.SSH_PATH }}
       run: |
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no" README.md ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
         # ssh $SSH_USER@$SSH_HOST << 'EOF'
           
           # php artisan migrate
