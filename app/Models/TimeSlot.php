@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Properties\CustomDateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +10,7 @@ class TimeSlot extends Model
 {
     /** @use HasFactory<\Database\Factories\TimeSlotFactory> */
     use HasFactory;
+    use CustomDateTime;
 
     protected $fillable = [
         'barber_id',

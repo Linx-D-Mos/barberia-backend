@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('barbershop_id'); // barbería a la que pertenece el horario
             $table->foreign('barbershop_id')->references('id')->on('barbershops');
-            $table->string('day', 15); // día de la semana
+            $table->enum('day', ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']); // día de la semana
             $table->time('start_time')->nullable(); // hora de inicio
             $table->time('end_time')->nullable(); // hora de fin
             $table->boolean('is_available')->default(true); // indica si el horario está disponible
             $table->timestamps();
+
+            // Crear índice único para evitar horarios duplicados
+            $table->unique(['barbershop_id', 'day']);
         });
     }
 

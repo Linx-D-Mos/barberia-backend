@@ -469,6 +469,53 @@
                 ]
             }
         },
+        "/api/client/schedule_barbershop": {
+            "post": {
+                "tags": [
+                    "Cliente"
+                ],
+                "summary": "Obtener los horarios de la barbería",
+                "description": "Obtener los horarios de la barbería de un cliente autenticado",
+                "operationId": "scheduleBarbershop",
+                "responses": {
+                    "200": {
+                        "description": "Horarios de la barbería",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Horarios de la barbería"
+                                        },
+                                        "schedules": {
+                                            "type": "array",
+                                            "items": {
+                                                "description": "Schedule object",
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [

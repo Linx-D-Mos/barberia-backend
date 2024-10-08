@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\Owner\OwnerController;
 use App\Http\Controllers\Api\QuoteServiceController;
 use App\Http\Controllers\Api\Root\RootController;
+use App\Http\Controllers\Api\ScheduleController;
 use App\Http\Controllers\Api\ServiceController as ApiServiceController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\Login\LoginController;
@@ -88,7 +89,8 @@ Route::prefix('/client')->middleware(['auth:sanctum', 'ability:client', 'verifie
 
     // protección para las rutas que requieren que el usuario esté afiliado a una barbería
     Route::middleware('babershop.status')->group(function () {
-
+        // ver los horarios de la barbería
+        Route::post('/schedule_barbershop', [ScheduleController::class, 'scheduleBarbershop']);
     });
 });
 

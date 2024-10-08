@@ -22,6 +22,7 @@ class ServiceFactory extends Factory
         return [
             'name' => $this->faker->sentence(6, true),
             'description' => $this->faker->text(),
+            'duration' => $this->faker->numberBetween(15, 120),
             'price' => $this->faker->randomFloat(2, 10000, 70000),
             'barbershop_id' => Barbershop::all()->random()->id,
         ];

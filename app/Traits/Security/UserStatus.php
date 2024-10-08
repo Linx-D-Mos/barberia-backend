@@ -7,6 +7,6 @@ trait UserStatus
     // verificar que el usuario está activo
     public function isActive()
     {
-        return $this->status === 'ACTIVO';
+        return $this->profile->status === 'ACTIVO';
     }
 }

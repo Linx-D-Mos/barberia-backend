@@ -18,10 +18,11 @@ class ScheduleFactory extends Factory
     public function definition(): array
     {
         return [
-            'barbershop_id' => Barbershop::all()->random()->id,
-            'day' => $this->faker->dayOfWeek(),
-            'start_time' => $this->faker->time(),
-            'end_time' => $this->faker->time(),
+            'barbershop_id' => Barbershop::factory(),
+            'day' => $this->faker->randomElement(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']),
+            'start_time' => '07:00',
+            'end_time' => '20:00',
+            'is_available' => $this->faker->boolean(80), // 80% de probabilidad de estar disponible
         ];
     }
 }

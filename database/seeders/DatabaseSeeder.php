@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\User;
 use App\Models\Quote;
 use App\Models\QuoteService;
+use App\Models\Schedule;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -63,6 +64,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('987654'),
         */
 
-
+        $this->call([
+            ScheduleSeeder::class,
+        ]);
     }
 }
