@@ -1,8 +1,8 @@
-name: Deploy Laravel 11 Backend
+name: Deploy Backend of Barber Connect
 
 on:
   push:
-    branches: [ main ]  # Ajusta esto según tu rama principal
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2'  # Asegúrate de que esta versión sea compatible con Laravel 11
+        php-version: '8.2'
 
     - name: Install Composer Dependencies
       run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
