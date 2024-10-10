@@ -36,3 +36,4 @@ jobs:
         SSH_PATH: ${{ secrets.SSH_PATH }}
       run: |
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cp ${{ secrets.SSH_PATH }}/.env.example ${{ secrets.SSH_PATH }}/.env"
